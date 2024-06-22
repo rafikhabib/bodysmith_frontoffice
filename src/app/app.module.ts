@@ -4,38 +4,37 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProductModule } from './product/product.module';
-import { ResidencesComponent } from './residences/residences.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormResidenceComponent } from './form-residence/form-residence.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DetailsResidenceComponent } from './details-residence/details-residence.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormApartementComponent } from './form-apartement/form-apartement.component';
-import { ResidenceService } from './core/services/residence.service';
-import {HttpClientModule} from '@angular/common/http';
-import { ResidenceComponent } from './residence/residence.component'
-@NgModule({ //Annotation / Decorator => TypeScript
+import { HttpClientModule } from '@angular/common/http';
+import { ProductsListComponent } from './product/products-list/products-list.component';
+import { TndCurrencyPipe } from './product/tnd-currency.pipe';
+
+import { PanierComponent } from './panier/panier.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { EditComponent } from './edit/edit.component';
+@NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     FooterComponent,
-    ResidencesComponent,
-    FormResidenceComponent,
     NotFoundComponent,
-    DetailsResidenceComponent,
-    FormApartementComponent,
-    ResidenceComponent
+    ProductsListComponent,
+    TndCurrencyPipe,
+
+    PanierComponent,
+      AddproductComponent,
+      EditComponent
   ],
   imports: [
     BrowserModule,
-    //ProductModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     HttpClientModule
   ],
-  providers: [], //Services
+  providers: [], // Vous pouvez ajouter des services ici
   bootstrap: [AppComponent]
 })
 export class AppModule { }

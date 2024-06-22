@@ -1,11 +1,69 @@
 {
-  "apartement": [],
-  "residence": [
+  "product": [
     {
-      "name": "Test update",
-      "address": "Test",
-      "image": "../../assets/images/R4.jpg",
-      "id": 1
+      "id": "1093",
+      "title": "zouzouzouzo",
+      "description": "pmolpmolplp",
+      "price": 72,
+      "categoryName": "Footwear",
+      "quantity": 2,
+      "imageUrl": "/assets/images/sport.png"
+    },
+    {
+      "id": "3dc0",
+      "title": "aaaaaaaaaa",
+      "description": "aaaaaaaaaa",
+      "price": 20,
+      "categoryName": "Sports Apparel",
+      "quantity": 19,
+      "imageUrl": "/assets/images/tenis.png"
+    }
+  ],
+  "cart": [
+    {
+      "0": {
+        "id": "1093",
+        "title": "zouzouzouzo",
+        "description": "pmolpmolplp",
+        "price": 72,
+        "categoryName": "Footwear",
+        "quantity": 1,
+        "imageUrl": "/assets/images/sport.png"
+      },
+      "id": "ff63"
+    },
+    {
+      "0": {
+        "id": "3dc0",
+        "title": "aaaaaaaaaa",
+        "description": "aaaaaaaaaa",
+        "price": 20,
+        "categoryName": "Sports Apparel",
+        "quantity": 1,
+        "imageUrl": "/assets/images/tenis.png"
+      },
+      "id": "070c"
+    },
+    {
+      "0": {
+        "id": "3dc0",
+        "title": "aaaaaaaaaa",
+        "description": "aaaaaaaaaa",
+        "price": 20,
+        "categoryName": "Sports Apparel",
+        "quantity": 1,
+        "imageUrl": "/assets/images/tenis.png"
+      },
+      "1": {
+        "id": "7c0f",
+        "title": "aaaaaaaaaaaaaaaaa",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaa",
+        "price": 2,
+        "categoryName": "Sports Apparel",
+        "quantity": 1,
+        "imageUrl": "/assets/images/sport.png"
+      },
+      "id": "6f57"
     }
   ]
 }

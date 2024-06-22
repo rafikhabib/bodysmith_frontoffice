@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormApartementComponent } from './form-apartement.component';
+import { PanierComponent } from './panier.component';
 
-describe('FormApartementComponent', () => {
-  let component: FormApartementComponent;
-  let fixture: ComponentFixture<FormApartementComponent>;
+describe('PanierComponent', () => {
+  let component: PanierComponent;
+  let fixture: ComponentFixture<PanierComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormApartementComponent ]
+      declarations: [ PanierComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormApartementComponent);
+    fixture = TestBed.createComponent(PanierComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,300 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    }
+    
+    h2 {
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    }
+    
+    /* Filter Section */
+    .filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    }
+    
+    .filter-section div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+    
+    label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    }
+    
+    input[type="number"],
+    input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Reset Filters Button */
+    button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    button
+    {
+    background-color: #45a049;
+    }
+    
+    button
+    {
+    transform: scale(0.95);
+    }
+    
+    button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+    }
+    
+    /* Product List */
+    .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    }
+    
+    .product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    }
+    
+    .product-card
+    {
+    transform: translateY(-5px);
+    }
+    
+    .product-card strong {
+    display: inline-block;
+    width: 100px;
+    color: #333;
+    }
+    
+    .product-card div {
+    margin-bottom: 10px;
+    }
+    
+    .popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .popup-notification.show {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    }
+    
+    @keyframes slide-in {
+    from {
+    opacity: 0;
+    transform: translateX(100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateX(0);
+    }
+    }
+    
+    /* Buy Button Animation */
+    button.buy-button {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    button.buy-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.75s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+    }
+    
+    button.buy-button:active::before {
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0s;
+    }
+    
+    button.buy-button:disabled::before {
+    display: none;
+    }
+    
+    button.buy-button
+    {
+    background-color: #3e8e41;
+    }
+    
+    button.buy-button
+    {
+    transform: scale(0.95);
+    }
+    .popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .popup-notification.show {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    }
+    
+    .out-of-stock-notification {
+    background-color: #f44336; /* Couleur rouge pour l'alerte de rupture de stock */
+    }
+    
+    .out-of-stock-notification.show {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    }
+    /* Ajoutez ou ajustez ces styles */
+    .popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .popup-notification.show {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    }
+    
+    .out-of-stock-notification {
+    background-color: #f44336; /* Couleur rouge pour l'alerte de rupture de stock */
+    }
+    
+    .out-of-stock-notification.show {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    }
+    
+    .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    }
+    .product-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    }
+    /* Pour les images dans la liste de produits et le panier */
+.product-image {
+    max-width: 100px; /* Ajustez la largeur maximale selon votre préférence */
+    height: auto; /* Pour conserver le ratio hauteur/largeur */
+    margin-bottom: 5px; /* Espacement sous l'image */
+  }
+  
+  /* Styles spécifiques pour le panier */
+  .cart-item .product-image {
+    max-width: 80px; /* Ajustez la taille pour le panier si nécessaire */
+  }
+  .cart-item {
+    border-bottom: 1px solid #ddd; /* Bordure basse entre les articles */
+    padding-bottom: 10px; /* Espacement sous chaque article */
+    margin-bottom: 10px; /* Marge basse entre chaque article */
+  }
+  
+  .cart-item:last-child {
+    border-bottom: none; /* Supprimer la bordure du dernier article */
+    padding-bottom: 0; /* Supprimer l'espacement sous le dernier article */
+    margin-bottom: 0; /* Supprimer la marge basse du dernier article */
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  
+  .cart-item div {
+    margin-right: 15px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4caf50;
+  }
+  
+  .total-amount {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,29 @@
+<div class="product-list">
+    <div class="product-card" *ngFor="let product of products">
+      <img class="product-image" [src]="product.imageUrl" alt="Product Image" />
+      <div>
+        <h3>{{ product.title }}</h3>
+        <label>Title: </label>
+        <input type="text" [(ngModel)]="product.title" pattern="[A-Za-z ]*" required><br>
+        <div *ngIf="!isValidTitle(product.title)" style="color: red;">Title can only contain letters and spaces</div>
+        <label>Description: </label>
+        <textarea [(ngModel)]="product.description" (keydown)="onDescriptionKeydown($event)" required></textarea><br>
+        <div *ngIf="!isValidDescription(product.description)" style="color: red;">Description cannot contain special characters</div>
+        <label>Price (DT): </label>
+        <input type="number" [(ngModel)]="product.price" min="0" required><br>
+        <label>Quantity: </label>
+        <input type="number" [(ngModel)]="product.quantity" min="0" required><br>
+        <label>Category: </label>
+        <select id="categoryName" class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required>
+          <option value="">Select a category...</option>
+          <option value="Sports Apparel">Sports Apparel</option>
+          <option value="Footwear">Footwear</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Nutrition and Supplements">Nutrition and Supplements</option>
+        </select><br>
+        <button (click)="updateProduct(product)">Update</button>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,33 +1,27 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ResidencesComponent } from "./residences/residences.component";
-import { FormResidenceComponent } from "./form-residence/form-residence.component";
-import { DetailsResidenceComponent } from "./details-residence/details-residence.component";
+import { ProductsListComponent } from "./product/products-list/products-list.component";
 import { NotFoundComponent } from './not-found/not-found.component';
-import { FormApartementComponent } from "./form-apartement/form-apartement.component";
+import { PanierComponent } from "./panier/panier.component";
+import { AddproductComponent } from "./addproduct/addproduct.component";
+import { EditComponent } from "./edit/edit.component";
 
-const t: Routes = [
-  {
-    path: 'residence',
-    children: [
-      { path: '', component: ResidencesComponent },
-      { path: 'test', component: FormResidenceComponent },
-      { path: ':id', component: DetailsResidenceComponent },
-    ],
-  },
-  { path: 'forma', component: FormApartementComponent },
-  { path: 'form', component: FormResidenceComponent },
-  { path: 'form/update/:id', component: FormResidenceComponent },
-  { path: '**', component: NotFoundComponent },
+const routes: Routes = [
+  { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
+  { path: 'product', component: ProductsListComponent },
+  { path: 'panier', component: PanierComponent }, // Assurez-vous que cette route est correcte
+  { path: 'add', component: AddproductComponent },
+  { path: 'edit', component: EditComponent },
+
+  { path: '**', component: NotFoundComponent } // Route par défaut pour les chemins inconnus
 ];
 
-
 @NgModule({
-    imports: [
-        RouterModule.forRoot(t)
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
-export class AppRoutingModule{};
+export class AppRoutingModule {}
