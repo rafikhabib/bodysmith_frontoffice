@@ -22,6 +22,10 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import { PlatListComponent } from './plat-list/plat-list.component';
 import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
+import { SessionsListComponent } from './sessions-list/sessions-list.component';
+import { CoachesListComponent } from './coaches-list/coaches-list.component';
+import { AuthInterceptor } from './core/interceptors/auth-interceptor.service'; // Importer l'intercepteur
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,8 @@ import { FavoritePlansComponent } from './favorite-plans/favorite-plans.componen
     PlatListComponent,
     PlatDetailComponent,
     FavoritePlansComponent,
+    SessionsListComponent,
+    CoachesListComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,7 @@ import { FavoritePlansComponent } from './favorite-plans/favorite-plans.componen
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [CategorieService, ProductService],
+  providers: [CategorieService, ProductService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

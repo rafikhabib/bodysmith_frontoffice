@@ -10,6 +10,8 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import { PlatListComponent } from './plat-list/plat-list.component';
 import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
+import { SessionsListComponent } from "./sessions-list/sessions-list.component";
+import { CoachesListComponent } from './coaches-list/coaches-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'panier', component: PanierComponent }, // Assurez-vous que cette route est correcte
   { path: 'add', component: AddproductComponent },
   { path: 'edit', component: EditComponent },
+  { path: 'sessions', component: SessionsListComponent },
+  { path: 'coaches', component: CoachesListComponent },
 
   { path: 'restaurant-list', component: RestaurantListComponent },
   { path: 'restaurant/:id', component: RestaurantDetailComponent },

@@ -1,0 +1,21 @@
+
+<div *ngIf="piw">{{ coaches ? coaches[0] : ' ' }}</div>
+
+<div *ngIf="clicked && coaches && coaches.length !== 0">  
+    <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let coach of coaches">
+            <td>{{ coach.firstName }}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<!-- Additional content for other scenarios -->

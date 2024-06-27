@@ -1,0 +1,37 @@
+
+
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div *ngIf="sessions.length > 0" class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type Cours</th>
+        <th>Salle de sport</th>
+        <th>Date session</th>
+
+        <th>Heure debut</th>
+        <th>Heure Fin</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let session of sessions">
+
+        <td>{{ session.TypeEvent }}</td>
+        <td>{{ session.IdSalleDeSport }} </td>
+        <td>  {{ session.DateEvent | date : 'dd/MM/yyyy'}} </td>
+
+        <td>{{ session.HeureDebutEvent | date : 'HH:mm' }}</td>
+        <td>{{ session.HeureFinEvent | date : 'HH:mm'}}</td>
+        <td>
+          <button (click)="reserver(session.id)" class="btn btn-danger">Réserver</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="sessions.length === 0" class="no-sessions">
+  <p>No sessions available.</p>
+</div>
