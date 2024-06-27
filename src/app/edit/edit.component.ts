@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../core/models/Product';
 import { ProductService } from '../core/services/product.service';
+import { CategorieService } from '../core/services/categorie.service';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,18 +13,54 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  products: Product[] = [];
-  selectedProduct: Product | null = null;
+  productForm: FormGroup = new FormGroup({
+    title: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6),
+      this.noSpecialCharactersValidator()
+    ]),
+    description: new FormControl("", [
+      this.noSpecialCharactersValidator()
+    ]),
+    price: new FormControl("", [
+      Validators.required,
+      Validators.min(0.01)
+    ]),
+    idCategorie: new FormControl("", Validators.required),
+    quantity: new FormControl("", [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    image: new FormControl('', [Validators.required]),
+  });
 
-  constructor(private productService: ProductService) {}
+  noSpecialCharactersValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const regex = /^[a-zA-Z0-9\u00C0-\u00FF ]*$/;
+      const isValid = regex.test(control.value);
+      return isValid ? null : { specialCharacters: true };
+    };
+  }
+
+  products: any[] = [];
+  selectedProduct: Product | null = null;
+  categories : any[] | undefined;
+
+  constructor(private productService: ProductService, private categorieService: CategorieService) {}
 
   ngOnInit(): void {
+    this.categorieService.getAllCategories().subscribe(
+      data=> this.categories = data,
+      error=>console.log(error)
+    )
+
     this.fetchProducts();
   }
 
   fetchProducts(): void {
     this.productService.getProducts().subscribe(
       (products) => {
+        console.log(products);
         this.products = products;
       },
       (error) => {
@@ -29,7 +69,7 @@ export class EditComponent implements OnInit {
     );
   }
 
-  updateProduct(product: Product): void {
+  updateProduct(product: any): void {
     // Vérifier la longueur minimale du titre et de la description
     if (product.title.length < 6) {
       console.error('Title must be at least 6 characters long');
@@ -41,7 +81,8 @@ export class EditComponent implements OnInit {
       return;
     }
 
-    const productId = typeof product.id === 'string' ? parseInt(product.id, 10) : product.id;
+    const productId = product._id;
+    console.log(product)
 
     this.productService.updateProduct(productId, product).subscribe(
       (updatedProduct) => {
@@ -54,7 +95,8 @@ export class EditComponent implements OnInit {
       }
     );
   }
-  deleteProduct(productId: number): void {
+
+  deleteProduct(productId: string): void {
     Swal.fire({
       title: 'Delete Product',
       text: 'Are you sure you want to delete this product?',
@@ -96,4 +138,10 @@ export class EditComponent implements OnInit {
   }
   
   
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.productForm.get('image')!.setValue(`/assets/images/${file.name}`);
+    }
+  }
 }

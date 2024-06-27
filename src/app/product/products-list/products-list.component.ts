@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductService } from 'src/app/core/services/product.service';
 import { CartService } from 'src/app/core/services/cart.service';
-import { Product } from 'src/app/core/models/Product';
+import { CategorieService } from 'src/app/core/services/categorie.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,25 +13,32 @@ export class ProductsListComponent implements OnInit {
   @ViewChild('popupNotification', { static: false }) popupNotification!: ElementRef;
   @ViewChild('outOfStockNotification', { static: false }) outOfStockNotification!: ElementRef;
 
-  products: Product[] = [];
-  filteredProducts: Product[] = [];
+  products: any[] = [];
+  filteredProducts: any[] = [];
   minPrice: number | undefined;
   maxPrice: number | undefined;
   categoryName: string = '';
   productAddedToCart: number | null = null;
   errorMessage: string | null = null;
+  userId: string = "667849cef7bb9f08e3c40fec";
 
-  cart: Product[] = [];
+  cart: any[] = [];
+  categories : any[] | undefined;
+
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
+    private categorieService: CategorieService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getProducts();
-    this.getCart();
+    this.categorieService.getAllCategories().subscribe(
+      data=> this.categories = data,
+      error=>console.log(error)
+    )
   }
 
   validateCategory(): boolean {
@@ -59,8 +66,10 @@ export class ProductsListComponent implements OnInit {
       this.errorMessage = null;
     }
 
+    console.log(this.categoryName)
+
     this.filteredProducts = this.products.filter(product => {
-      const matchesCategory = !this.categoryName || product.categoryName === this.categoryName;
+      const matchesCategory = !this.categoryName || product.idCategorie.nom === this.categoryName;
       const matchesPriceRange = (!this.minPrice || product.price >= this.minPrice) &&
                                  (!this.maxPrice || product.price <= this.maxPrice);
       return matchesCategory && matchesPriceRange;
@@ -74,7 +83,7 @@ export class ProductsListComponent implements OnInit {
     this.getProducts();
   }
 
-  deleteProduct(id: number): void {
+  deleteProduct(id: string): void {
     this.productService.deleteProduct(id).subscribe(
       () => {
         this.products = this.products.filter(product => product.id !== id);
@@ -86,57 +95,22 @@ export class ProductsListComponent implements OnInit {
     );
   }
 
-  buyProduct(product: Product): void {
+  buyProduct(product: any): void {
     if (product.quantity > 0) {
-      product.quantity -= 1;
-  
-      this.productService.updateProduct(product.id, product).subscribe(
-        (updatedProduct) => {
-          console.log('Product updated:', updatedProduct);
-  
-          // Ajoutez le produit au panier après une mise à jour réussie
-          this.cartService.addToCart(updatedProduct).subscribe(() => {
-            // Afficher la notification appropriée
-            if (updatedProduct.quantity === 0) {
-              this.showOutOfStockNotification();
-            } else {
-              this.showPopupNotification();
-            }
-  
-            // Actualisez le panier pour refléter l'ajout du produit
-            this.getCart();
-  
-            // Réinitialise productAddedToCart après 5 secondes
+
+          this.cartService.addToCart(product._id,this.userId,1).subscribe(
+            data => {
+            this.showPopupNotification();
             setTimeout(() => {
               this.productAddedToCart = null;
             }, 5000);
           });
-        },
-        (error) => {
-          console.error('Error updating product:', error);
   
-          // Revert to the previous quantity if the update fails
-          product.quantity += 1;
-        }
-      );
   
     } else {
       console.warn('Product quantity is already 0');
-      // Afficher une notification de rupture de stock si nécessaire
       this.showOutOfStockNotification();
     }
-  }
-  
-
-  getCart(): void {
-    this.cartService.cart$.subscribe(
-      (data) => {
-        this.cart = data; // Update the local cart with the received data
-      },
-      (error) => {
-        console.error('Error fetching cart', error);
-      }
-    );
   }
 
   showPopupNotification(): void {

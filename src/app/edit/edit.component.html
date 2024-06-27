@@ -1,6 +1,6 @@
 <div class="product-list">
     <div class="product-card" *ngFor="let product of products">
-      <img class="product-image" [src]="product.imageUrl" alt="Product Image" />
+      <img class="product-image" [src]="product.image" alt="Product Image" />
       <div>
         <h3>{{ product.title }}</h3>
         <label>Title: </label>
@@ -14,16 +14,17 @@
         <label>Quantity: </label>
         <input type="number" [(ngModel)]="product.quantity" min="0" required><br>
         <label>Category: </label>
-        <select id="categoryName" class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required>
+        <select id="categoryName" class="form-select">
           <option value="">Select a category...</option>
-          <option value="Sports Apparel">Sports Apparel</option>
-          <option value="Footwear">Footwear</option>
-          <option value="Equipment">Equipment</option>
-          <option value="Nutrition and Supplements">Nutrition and Supplements</option>
-        </select><br>
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.nom }}
+          </option>
+        </select>
+        <br>
         <button (click)="updateProduct(product)">Update</button>
-        <button (click)="deleteProduct(product.id)">Delete</button>
+        <button (click)="deleteProduct(product._id)">Delete</button>
       </div>
     </div>
   </div>
+
   

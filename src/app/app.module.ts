@@ -14,6 +14,11 @@ import { TndCurrencyPipe } from './product/tnd-currency.pipe';
 import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditComponent } from './edit/edit.component';
+
+import { CategorieService } from './core/services/categorie.service'; 
+import { ProductService } from './core/services/product.service'; 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,10 @@ import { EditComponent } from './edit/edit.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [], // Vous pouvez ajouter des services ici
+  providers: [
+    CategorieService,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

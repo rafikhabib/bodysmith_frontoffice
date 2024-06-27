@@ -1,15 +1,16 @@
 // src/app/addproduct/addproduct.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from '../core/services/product.service';
+import { CategorieService } from '../core/services/categorie.service';
 
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
   styleUrls: ['./addproduct.component.css']
 })
-export class AddproductComponent {
+export class AddproductComponent implements OnInit{
   productForm: FormGroup = new FormGroup({
     title: new FormControl("", [
       Validators.required,
@@ -17,29 +18,36 @@ export class AddproductComponent {
       this.noSpecialCharactersValidator()
     ]),
     description: new FormControl("", [
-      Validators.required,
-      Validators.minLength(10),
       this.noSpecialCharactersValidator()
     ]),
     price: new FormControl("", [
       Validators.required,
       Validators.min(0.01)
     ]),
-    categoryName: new FormControl("", Validators.required),
+    idCategorie: new FormControl("", Validators.required),
     quantity: new FormControl("", [
       Validators.required,
       Validators.min(1)
     ]),
-    imageUrl: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
   });
 
   maxFileSize = 5 * 1024 * 1024;
   allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+  categories : any[] | undefined;
 
   constructor(
     private router: Router,
     private productService: ProductService,
+    private categorieService: CategorieService,
   ) {}
+
+  ngOnInit(): void {
+    this.categorieService.getAllCategories().subscribe(
+      data=> this.categories = data,
+      error=>console.log(error)
+    )
+  }
 
   addProduct() {
     if (this.productForm.valid) {
@@ -71,15 +79,15 @@ export class AddproductComponent {
     if (file) {
       if (file.size > this.maxFileSize) {
         alert(`File size exceeds limit (Max: ${this.maxFileSize / (1024 * 1024)} MB)!`);
-        this.productForm.get('imageUrl')!.setValue('');
+        this.productForm.get('image')!.setValue('');
         return;
       }
       if (!this.allowedFileTypes.includes(file.type)) {
         alert(`Invalid file type. Allowed types: ${this.allowedFileTypes.join(', ')}.`);
-        this.productForm.get('imageUrl')!.setValue('');
+        this.productForm.get('image')!.setValue('');
         return;
       }
-      this.productForm.get('imageUrl')!.setValue(`/assets/images/${file.name}`);
+      this.productForm.get('image')!.setValue(`/assets/images/${file.name}`);
     }
   }
 

@@ -56,7 +56,7 @@
     <!-- Image Upload -->
     <div class="mb-3">
       <label for="imageUrl" class="form-label">Image:</label>
-      <input type="file" id="imageUrl" class="form-control" formControlName="imageUrl" (change)="onFileSelected($event)">
+      <input type="file" id="imageUrl" class="form-control" (change)="onFileSelected($event)">
       <!-- Error Messages for Image -->
       <div *ngIf="productForm.get('imageUrl')?.invalid && (productForm.get('imageUrl')?.touched || productForm.get('imageUrl')?.dirty)">
         <div *ngIf="productForm.get('imageUrl')!.errors!['required']" class="text-danger">
@@ -86,12 +86,11 @@
     <!-- Category Dropdown -->
     <div class="mb-3">
       <label for="categoryName" class="form-label">Category:</label>
-      <select id="categoryName" class="form-select" formControlName="categoryName">
+      <select id="categoryName" class="form-select" formControlName="idCategorie">
         <option value="">Select a category...</option>
-        <option value="Sports Apparel">Sports Apparel</option>
-        <option value="Footwear">Footwear</option>
-        <option value="Equipment">Equipment</option>
-        <option value="Nutrition and Supplements">Nutrition and Supplements</option>
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.nom }}
+        </option>
       </select>
       <!-- Error Messages for Category -->
       <div *ngIf="productForm.get('categoryName')?.invalid && (productForm.get('categoryName')?.touched || productForm.get('categoryName')?.dirty)">

@@ -12,48 +12,42 @@
   </div>
 
   <div>
-   
-  </div>
-  <div class="mb-3">
     <label for="category" class="form-label">Category:</label>
     <select id="category" class="form-select"
             [(ngModel)]="categoryName"
             (change)="applyFilters()">
       <option value="">Select a category...</option>
-      <option value="Sports Apparel">Sports Apparel</option>
-      <option value="Footwear">Footwear</option>
-      <option value="Equipment">Equipment</option>
-      <option value="Nutrition and Supplements">Nutrition and Supplements</option>
+      <option *ngFor="let category of categories" [value]="category.nom">
+        {{ category.nom }}
+      </option>
     </select>
   </div>
-  
-  
-  <button (click)="resetFilters()">Reset Filters</button>
+
+  <div>
+    <button class="button-reset"  (click)="resetFilters()">Reset Filters</button>
+  </div>
 </div>
 
 <hr>
 
 <div *ngIf="filteredProducts.length > 0; else noProducts" class="product-list">
   <div *ngFor="let product of filteredProducts" class="product-card">
-    <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="{{ product.title }}" class="product-image" />
+    <img *ngIf="product.image" [src]="product.image" alt="{{ product.title }}" class="product-image" />
     <div>
       <strong>Title:</strong> {{ product.title }}
     </div>
     <div>
       <strong>Price:</strong> {{ product.price | currency:'TND' }}
     </div>
+    <div *ngIf="product.quantity > 0" class="strong1">
+      <strong>Availability:</strong>AVAILABLE
+    </div>
+    <div *ngIf="product.quantity <= 0" class="strong2">
+      <strong>Availability:</strong>OUT OF STOCK
+    </div>
     <div>
       <strong>Description:</strong> {{ product.description }}
     </div>
-  
-    <div>
-      <strong>Category:</strong> {{ product.categoryName }}
-    </div>
-    
-    <!-- Display "Out of Stock" if quantity is zero -->
-    <div *ngIf="product.quantity === 0" class="out-of-stock">Out of Stock</div>
-
-    <!-- "Buy" button with disabled attribute if quantity is 0 -->
     <button class="buy-button" (click)="buyProduct(product)" [disabled]="product.quantity === 0">Buy</button>
   </div>
 </div>

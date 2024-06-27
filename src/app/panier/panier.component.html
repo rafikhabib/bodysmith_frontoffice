@@ -1,29 +1,43 @@
 <h2>Shopping Cart</h2>
 
-<div *ngIf="cart.length > 0; else noProducts">
-  <div *ngFor="let product of cart" class="cart-item">
-    <img *ngIf="product.imageUrl" [src]="product.imageUrl" [alt]="product.title" class="product-image" />
-    <div>
-      <strong>Title:</strong> {{ product.title }}
-    </div>
-    <div>
-      <strong>Price:</strong> {{ product.price | tndCurrency }}
-    </div>
-    <div>
-      <strong>Quantity in Cart:</strong>
-      <button (click)="updateQuantity(product.id, product.quantity - 1)">-</button>
-      {{ product.quantity }}
-      <button (click)="updateQuantity(product.id, product.quantity + 1)">+</button>
-    </div>
-    <button (click)="removeFromCart(product.id)">Remove from Cart</button>
-  </div>
+<div *ngIf="products && products.length; else noProducts">
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Quantity in Cart</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products" class="cart-item">
+        <td>
+          <img *ngIf="product.produitId.image" src="{{product.produitId.image}}" class="product-image" />
+        </td>
+        <td>{{ product.produitId.title }}</td>
+        <td>{{ product.produitId.price | tndCurrency }}</td>
+        <td>  
+          <button [disabled]="product.quantity<=1" class="quantity-button" (click)="decreaseQuantity(product)">-</button>
+          {{ product.quantity }}
+          <button [disabled]="product.quantity>=product.produitId.quantity" class="quantity-button" (click)="increaseQuantity(product)">+</button>
+        </td>
+        <td>
+          <button (click)="removeFromCart(product)">Remove from Cart</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="total-amount">
-    <strong>Total Amount:</strong> {{ totalAmount | tndCurrency }}
+    <strong>Total Amount:</strong> {{ cart.totalPrice | tndCurrency }}
   </div>
 
-  <button (click)="validateOrder()">Validate Order</button>
-  <button (click)="clearAllCart()">Clear All Cart</button> 
+  <div class="cart-actions">
+    <button (click)="validateOrder()">Validate Order</button>
+    <button (click)="clearAllCart()">Clear All Cart</button>
+  </div>
 </div>
 
 <ng-template #noProducts>
