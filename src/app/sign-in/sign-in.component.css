@@ -1,0 +1,106 @@
+/* login.component.css */
+
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+/* Apply Montserrat font to all elements inside .login-container */
+.login-container, .login-container * h2 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('src/assets/about-us.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-container form {
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(98, 98, 98, 0.63); 
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%; /* Adjust width as needed */
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.25rem;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+.form-control.is-invalid {
+  border-color: #e53e3e;
+}
+
+.invalid-feedback {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: #ef7126; 
+}
+
+.btn:hover {
+  background-color: #a24915; 
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.25rem solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.alert {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  color: #e53e3e;
+}

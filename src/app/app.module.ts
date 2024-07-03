@@ -19,6 +19,7 @@ import { CategorieComponent } from './categorie/categorie.component';
 
 import { CategorieService } from './core/services/categorie.service';
 import { ProductService } from './core/services/product.service';
+import { LoginComponent,  } from './sign-in/sign-in.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { PlatListComponent } from './plat-list/plat-list.component';
@@ -29,7 +30,6 @@ import { CoachesListComponent } from './coaches-list/coaches-list.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor.service'; // Importer l'intercepteur
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReservationsComponent } from './reservations/reservations.component';
-// import { ReservationsComponent } from './reservation/reservation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShoppingDialogComponent } from './shopping-dialog/shopping-dialog.component';
 
@@ -45,8 +45,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProductsListComponent,
     TndCurrencyPipe,
     PanierComponent,
-      AddproductComponent,
-      EditComponent,
+    LoginComponent,
+    AddproductComponent,
+    EditComponent,
       SessionsListComponent,
       CoachesListComponent,
       ReservationsComponent,
