@@ -37,7 +37,17 @@
     </select>
   </div>
 
-  <div class="plat-grid" *ngIf="!isFiltered">
+  <!-- Display error message for invalid calorie input or no plans found -->
+  <div *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Display error message for no plats found during restaurant search -->
+  <div *ngIf="restaurantSelected && !plats.length && !isFiltered">
+    <p>No plats found for the selected restaurant.</p>
+  </div>
+
+  <div *ngIf="!isFiltered && plats.length" class="plat-grid">
     <div class="plat-card" *ngFor="let plat of plats">
       <img [src]="plat.imagePlat" alt="{{ plat.nomPlat }}" class="plat-image" />
       <div class="plat-info">
@@ -58,7 +68,7 @@
     </div>
   </div>
 
-  <div class="plat-grid" *ngIf="isFiltered">
+  <div *ngIf="isFiltered && platCombinations.length" class="plat-grid">
     <div
       class="plat-combination-card"
       *ngFor="let combination of platCombinations"

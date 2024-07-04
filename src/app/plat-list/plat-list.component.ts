@@ -15,8 +15,9 @@ export class PlatListComponent implements OnInit {
   plats: any[] = [];
   restaurants: any[] = [];
   isFiltered = false;
-  favorites: any[] = [];
   userId: string = '667c53e0cc6a8a9f98ef3f24'; // Use a real user ID from authentication
+  restaurantSelected = false;
+  errorMessage: string = '';
 
   constructor(
     private platService: PlatService,
@@ -28,7 +29,6 @@ export class PlatListComponent implements OnInit {
   ngOnInit(): void {
     this.loadPlats();
     this.loadRestaurants();
-    this.loadFavorites();
   }
 
   loadPlats() {
@@ -43,14 +43,10 @@ export class PlatListComponent implements OnInit {
     });
   }
 
-  loadFavorites() {
-    this.favoritesService.getFavorites(this.userId).subscribe((data) => {
-      this.favorites = data;
-    });
-  }
-
   clearSearch(minCalories: any, maxCalories: any, restaurantSelector: any) {
     this.isFiltered = false;
+    this.restaurantSelected = false;
+    this.errorMessage = '';
     minCalories.value = '';
     maxCalories.value = '';
     restaurantSelector.value = '';
@@ -60,38 +56,70 @@ export class PlatListComponent implements OnInit {
   }
 
   searchPlatsWithinCalories(minCalories: number, maxCalories: number) {
-    this.isFiltered = true;
-    if (minCalories && maxCalories) {
-      this.platService
-        .findPlatsWithinCalories(minCalories, maxCalories)
-        .subscribe(
-          (data) => {
-            this.platCombinations = data;
-            this.plats = []; // Clear plats array when filtering by calories
-          },
-          (error) => {
-            console.error('Error fetching plats within calories:', error);
-          }
-        );
-    } else {
+    if (minCalories <= 0 || maxCalories <= 0) {
+      this.errorMessage = 'Calories must be positive values.';
+      this.isFiltered = false;
       this.platCombinations = [];
+      return;
     }
+
+    if (minCalories >= maxCalories) {
+      this.errorMessage = 'Max calories must be greater than min calories.';
+      this.isFiltered = false;
+      this.platCombinations = [];
+      return;
+    }
+
+    this.errorMessage = '';
+    this.isFiltered = true;
+    this.platService
+      .findPlatsWithinCalories(minCalories, maxCalories)
+      .subscribe(
+        (data) => {
+          this.platCombinations = data;
+          if (this.platCombinations.length === 0) {
+            this.errorMessage =
+              'No plans found within the specified calorie range.';
+          }
+        },
+        (error) => {
+          console.error('Error fetching plats within calories:', error);
+          // Handle error, maybe show a message to the user
+          this.errorMessage =
+            'No plans found within the specified calorie range.';
+        }
+      );
   }
 
   searchByRestaurant(restaurantId: string) {
     this.isFiltered = false;
+    this.restaurantSelected = true;
+    this.plats = []; // Clear plats array initially
+
     if (restaurantId) {
-      this.restaurantService
-        .getRestaurantById(restaurantId)
-        .subscribe((restaurant) => {
+      this.restaurantService.getRestaurantById(restaurantId).subscribe(
+        (restaurant) => {
           const platObservables = restaurant.plats.map((plat: any) =>
             this.platService.getPlatById(plat._id)
           );
-          forkJoin(platObservables).subscribe((platDetails: any[]) => {
-            this.plats = platDetails;
-            this.platCombinations = []; // Clear platCombinations array when filtering by restaurant
-          });
-        });
+          forkJoin(platObservables).subscribe(
+            (platDetails: any[]) => {
+              this.plats = platDetails;
+              if (this.plats.length === 0) {
+                this.restaurantSelected = false; // No plats found for the selected restaurant
+              }
+            },
+            (error) => {
+              console.error('Error fetching plats for the restaurant:', error);
+              this.plats = []; // Ensure plats array is empty on error
+            }
+          );
+        },
+        (error) => {
+          console.error('Error fetching restaurant by ID:', error);
+          this.plats = []; // Ensure plats array is empty on error
+        }
+      );
     } else {
       this.loadPlats();
     }
@@ -104,9 +132,7 @@ export class PlatListComponent implements OnInit {
 
     this.favoritesService
       .addFavorite(this.userId, plats, totalCalories)
-      .subscribe(() => {
-        this.loadFavorites();
-      });
+      .subscribe();
   }
 
   goToDetails(id: string): void {
