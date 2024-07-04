@@ -49,7 +49,15 @@
     </select>
   </div>
 
-  <div class="restaurant-grid">
+  <ng-template #noRestaurants>
+    <p>No restaurants found.</p>
+  </ng-template>
+
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <div
+    class="restaurant-grid"
+    *ngIf="restaurants.length > 0; else noRestaurants"
+  >
     <div class="restaurant-card" *ngFor="let restaurant of restaurants">
       <img
         [src]="restaurant.imageRestaurant"
@@ -62,8 +70,8 @@
         <p>
           <strong>Categories:</strong>
           <span *ngFor="let category of restaurant.categorieRestaurant">
-            {{ category.libelle
-            }}<span *ngIf="!isLast(category, restaurant.categorieRestaurant)"
+            {{ category.libelle }}
+            <span *ngIf="!isLast(category, restaurant.categorieRestaurant)"
               >,
             </span>
           </span>
@@ -71,8 +79,8 @@
         <p>
           <strong>Plats:</strong>
           <span *ngFor="let plat of restaurant.plats">
-            {{ plat.nomPlat
-            }}<span *ngIf="!isLast(plat, restaurant.plats)">, </span>
+            {{ plat.nomPlat }}
+            <span *ngIf="!isLast(plat, restaurant.plats)">, </span>
           </span>
         </p>
       </div>
