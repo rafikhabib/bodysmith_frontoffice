@@ -1,35 +1,66 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Body Smith</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/product">Products</a>
-                </li>
-            </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Body Smith</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/product"
+            >Products</a
+          >
+        </li>
+      </ul>
 
-            <!-- Cart icon and badge -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/panier">
-                        <i class="bi bi-cart"></i> <!-- Icone de panier -->
-                        Panier <!-- Texte du lien -->
-                    </a>
-                </li>
-            </ul>
+      <!-- Cart icon and badge -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/panier">
+            <i class="bi bi-cart"></i>
+            <!-- Icone de panier -->
+            Panier
+            <!-- Texte du lien -->
+          </a>
+        </li>
+      </ul>
 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/add">
-                        <i class="bi bi-cart"></i> <!-- Icone de panier -->
-                       add product <!-- Texte du lien -->
-                    </a>
-                </li>
-            </ul>
-        </div>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/add">
+            <i class="bi bi-cart"></i>
+            <!-- Icone de panier -->
+            add product
+            <!-- Texte du lien -->
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/plat-list"> Plats </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/restaurant-list"> Restaurants </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/favorites"> Favorite Plans</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>

@@ -1,0 +1,129 @@
+<div>
+  <h2>Plat List</h2>
+  <div>
+    <button
+      type="button"
+      (click)="clearSearch(minCalories, maxCalories, restaurantSelector)"
+    >
+      Clear Search
+    </button>
+  </div>
+
+  <div>
+    <input type="number" #minCalories placeholder="Min Calories" />
+    <input type="number" #maxCalories placeholder="Max Calories" />
+    <button
+      type="button"
+      (click)="
+        searchPlatsWithinCalories(
+          minCalories.valueAsNumber,
+          maxCalories.valueAsNumber
+        )
+      "
+    >
+      Find Plats Within Calories
+    </button>
+  </div>
+
+  <div>
+    <select
+      #restaurantSelector
+      (change)="searchByRestaurant(restaurantSelector.value)"
+    >
+      <option value="">Select a Restaurant</option>
+      <option *ngFor="let restaurant of restaurants" [value]="restaurant._id">
+        {{ restaurant.nomRestaurant }}
+      </option>
+    </select>
+  </div>
+
+  <div class="plat-grid" *ngIf="!isFiltered">
+    <div class="plat-card" *ngFor="let plat of plats">
+      <img [src]="plat.imagePlat" alt="{{ plat.nomPlat }}" class="plat-image" />
+      <div class="plat-info">
+        <h3>{{ plat.nomPlat }}</h3>
+        <p><strong>Price:</strong> {{ plat.prixPlat }} USD</p>
+        <p><strong>Calories:</strong> {{ plat.calories }}</p>
+        <p><strong>Cuisine:</strong> {{ plat.cuisine }}</p>
+        <p><strong>Category:</strong> {{ plat.categoriePlat }}</p>
+        <p>
+          <strong>Restaurants:</strong>
+          <span *ngFor="let restaurant of plat.restaurants">
+            {{ restaurant.nomRestaurant }}
+            <span *ngIf="!isLast(restaurant, plat.restaurants)">, </span>
+          </span>
+        </p>
+      </div>
+      <a [routerLink]="['/plat', plat._id]">View Details</a>
+    </div>
+  </div>
+
+  <div class="plat-grid" *ngIf="isFiltered">
+    <div
+      class="plat-combination-card"
+      *ngFor="let combination of platCombinations"
+    >
+      <h3>Total Calories: {{ combination.totalCalories }}</h3>
+
+      <div class="plat-card">
+        <img
+          [src]="combination.entree.imagePlat"
+          alt="{{ combination.entree.nomPlat }}"
+          class="plat-image"
+        />
+        <div class="plat-info">
+          <h3>{{ combination.entree.nomPlat }}</h3>
+          <p><strong>Price:</strong> {{ combination.entree.prixPlat }} USD</p>
+          <p><strong>Calories:</strong> {{ combination.entree.calories }}</p>
+          <p><strong>Cuisine:</strong> {{ combination.entree.cuisine }}</p>
+          <p>
+            <strong>Category:</strong> {{ combination.entree.categoriePlat }}
+          </p>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <img
+          [src]="combination.platPricipale.imagePlat"
+          alt="{{ combination.platPricipale.nomPlat }}"
+          class="plat-image"
+        />
+        <div class="plat-info">
+          <h3>{{ combination.platPricipale.nomPlat }}</h3>
+          <p>
+            <strong>Price:</strong> {{ combination.platPricipale.prixPlat }} USD
+          </p>
+          <p>
+            <strong>Calories:</strong> {{ combination.platPricipale.calories }}
+          </p>
+          <p>
+            <strong>Cuisine:</strong> {{ combination.platPricipale.cuisine }}
+          </p>
+          <p>
+            <strong>Category:</strong>
+            {{ combination.platPricipale.categoriePlat }}
+          </p>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <img
+          [src]="combination.dessert.imagePlat"
+          alt="{{ combination.dessert.nomPlat }}"
+          class="plat-image"
+        />
+        <div class="plat-info">
+          <h3>{{ combination.dessert.nomPlat }}</h3>
+          <p><strong>Price:</strong> {{ combination.dessert.prixPlat }} USD</p>
+          <p><strong>Calories:</strong> {{ combination.dessert.calories }}</p>
+          <p><strong>Cuisine:</strong> {{ combination.dessert.cuisine }}</p>
+          <p>
+            <strong>Category:</strong> {{ combination.dessert.categoriePlat }}
+          </p>
+        </div>
+      </div>
+
+      <button (click)="addToFavorites(combination)">Add to Favorites</button>
+    </div>
+  </div>
+</div>

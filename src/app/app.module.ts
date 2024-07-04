@@ -15,9 +15,13 @@ import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditComponent } from './edit/edit.component';
 
-import { CategorieService } from './core/services/categorie.service'; 
-import { ProductService } from './core/services/product.service'; 
-
+import { CategorieService } from './core/services/categorie.service';
+import { ProductService } from './core/services/product.service';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
+import { PlatListComponent } from './plat-list/plat-list.component';
+import { PlatDetailComponent } from './plat-detail/plat-detail.component';
+import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
 
 @NgModule({
   declarations: [
@@ -29,20 +33,23 @@ import { ProductService } from './core/services/product.service';
     TndCurrencyPipe,
 
     PanierComponent,
-      AddproductComponent,
-      EditComponent
+    AddproductComponent,
+    EditComponent,
+
+    RestaurantListComponent,
+    RestaurantDetailComponent,
+    PlatListComponent,
+    PlatDetailComponent,
+    FavoritePlansComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [
-    CategorieService,
-    ProductService
-  ],
-  bootstrap: [AppComponent]
+  providers: [CategorieService, ProductService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,14 @@
+<div *ngIf="plat">
+  <h1>{{ plat.nomPlat }}</h1>
+  <img [src]="plat.imagePlat" alt="{{ plat.nomPlat }}" />
+  <p><strong>Price:</strong> {{ plat.prixPlat }}</p>
+  <p><strong>Cuisine:</strong> {{ plat.cuisine }}</p>
+  <p><strong>Calories:</strong> {{ plat.calories }}</p>
+  <p><strong>Categorie:</strong> {{ plat.categoriePlat }}</p>
+  <h2>Restaurants:</h2>
+  <ul>
+    <li *ngFor="let restaurant of plat.restaurants">
+      {{ restaurant.nomRestaurant }}
+    </li>
+  </ul>
+</div>

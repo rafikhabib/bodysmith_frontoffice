@@ -1,0 +1,23 @@
+<div>
+  <h2>Favorites</h2>
+  <div class="plat-combination-card" *ngFor="let favorite of favorites">
+    <h3>Total Calories: {{ favorite.totalCalories }}</h3>
+
+    <!-- Loop over the plats array in each favorite -->
+    <div class="plat-card" *ngFor="let plat of favorite.plats">
+      <img [src]="plat.imagePlat" alt="{{ plat.nomPlat }}" class="plat-image" />
+      <div class="plat-info">
+        <h3>{{ plat.nomPlat }}</h3>
+        <p><strong>Price:</strong> {{ plat.prixPlat }} USD</p>
+        <p><strong>Calories:</strong> {{ plat.calories }}</p>
+        <p><strong>Cuisine:</strong> {{ plat.cuisine }}</p>
+        <p><strong>Category:</strong> {{ plat.categoriePlat }}</p>
+      </div>
+    </div>
+
+    <!-- Button to remove favorite -->
+    <button (click)="removeFavorite(favorite._id)">
+      Remove from Favorites
+    </button>
+  </div>
+</div>

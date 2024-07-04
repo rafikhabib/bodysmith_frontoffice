@@ -1,0 +1,82 @@
+<div>
+  <h2>Restaurant List</h2>
+  <div>
+    <input
+      type="text"
+      #searchString
+      (input)="searchRestaurants(searchString.value)"
+      placeholder="Search by address"
+    />
+    <button
+      type="button"
+      (click)="
+        clearSearch(searchString, maxDistance, categorySelector, platSelector)
+      "
+    >
+      Clear Search
+    </button>
+  </div>
+
+  <div>
+    <input type="number" #maxDistance placeholder="Enter maxDistance" />
+    <button
+      type="button"
+      (click)="findNearbyRestaurants(maxDistance.valueAsNumber)"
+    >
+      Find Nearby Restaurants
+    </button>
+  </div>
+
+  <!-- Category dropdown -->
+  <div>
+    <select
+      #categorySelector
+      (change)="searchByCategory(categorySelector.value)"
+    >
+      <option value="">Select a category</option>
+      <option *ngFor="let category of categories" [value]="category._id">
+        {{ category.libelle }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <select #platSelector (change)="searchByPlat(platSelector.value)">
+      <option value="">Select a Plat</option>
+      <option *ngFor="let plat of plats" [value]="plat._id">
+        {{ plat.nomPlat }}
+      </option>
+    </select>
+  </div>
+
+  <div class="restaurant-grid">
+    <div class="restaurant-card" *ngFor="let restaurant of restaurants">
+      <img
+        [src]="restaurant.imageRestaurant"
+        alt="{{ restaurant.nomRestaurant }}"
+        class="restaurant-image"
+      />
+      <div class="restaurant-info">
+        <h3>{{ restaurant.nomRestaurant }}</h3>
+        <p><strong>Address:</strong> {{ restaurant.adresseRestaurant }}</p>
+        <p>
+          <strong>Categories:</strong>
+          <span *ngFor="let category of restaurant.categorieRestaurant">
+            {{ category.libelle
+            }}<span *ngIf="!isLast(category, restaurant.categorieRestaurant)"
+              >,
+            </span>
+          </span>
+        </p>
+        <p>
+          <strong>Plats:</strong>
+          <span *ngFor="let plat of restaurant.plats">
+            {{ plat.nomPlat
+            }}<span *ngIf="!isLast(plat, restaurant.plats)">, </span>
+          </span>
+        </p>
+      </div>
+      <a [routerLink]="['/restaurant', restaurant._id]">View Details</a>
+    </div>
+  </div>
+</div>
