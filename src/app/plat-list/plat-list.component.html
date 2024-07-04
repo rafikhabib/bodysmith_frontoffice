@@ -1,19 +1,31 @@
-<div>
-  <h2>Plat List</h2>
-  <div>
+<div class="container">
+  <h2 class="section-title">Plat List</h2>
+  <div class="search-controls">
     <button
       type="button"
+      class="btn btn-clear"
       (click)="clearSearch(minCalories, maxCalories, restaurantSelector)"
     >
       Clear Search
     </button>
   </div>
 
-  <div>
-    <input type="number" #minCalories placeholder="Min Calories" />
-    <input type="number" #maxCalories placeholder="Max Calories" />
+  <div class="search-filters">
+    <input
+      type="number"
+      #minCalories
+      placeholder="Min Calories"
+      class="input-field"
+    />
+    <input
+      type="number"
+      #maxCalories
+      placeholder="Max Calories"
+      class="input-field"
+    />
     <button
       type="button"
+      class="btn btn-primary"
       (click)="
         searchPlatsWithinCalories(
           minCalories.valueAsNumber,
@@ -25,9 +37,10 @@
     </button>
   </div>
 
-  <div>
+  <div class="search-filters">
     <select
       #restaurantSelector
+      class="input-field"
       (change)="searchByRestaurant(restaurantSelector.value)"
     >
       <option value="">Select a Restaurant</option>
@@ -38,12 +51,15 @@
   </div>
 
   <!-- Display error message for invalid calorie input or no plans found -->
-  <div *ngIf="errorMessage">
+  <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
 
   <!-- Display error message for no plats found during restaurant search -->
-  <div *ngIf="restaurantSelected && !plats.length && !isFiltered">
+  <div
+    *ngIf="restaurantSelected && !plats.length && !isFiltered"
+    class="error-message"
+  >
     <p>No plats found for the selected restaurant.</p>
   </div>
 
@@ -64,7 +80,9 @@
           </span>
         </p>
       </div>
-      <a [routerLink]="['/plat', plat._id]">View Details</a>
+      <a [routerLink]="['/plat', plat._id]" class="btn btn-details"
+        >View Details</a
+      >
     </div>
   </div>
 
@@ -133,7 +151,9 @@
         </div>
       </div>
 
-      <button (click)="addToFavorites(combination)">Add to Favorites</button>
+      <button (click)="addToFavorites(combination)" class="btn btn-favorites">
+        Add to Favorites
+      </button>
     </div>
   </div>
 </div>

@@ -1,39 +1,104 @@
+body {
+  background-color: #151515;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #151515;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5em;
+  color: #f36100;
+  margin-bottom: 20px;
+}
+
+.search-controls, .search-filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  padding: 10px;
+  margin: 0 10px;
+  font-size: 1em;
+  border: 1px solid #f36100;
+  border-radius: 5px;
+  background-color: #151515;
+  color: #ffffff;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-clear {
+  background-color: #f36100;
+  color: #ffffff;
+}
+
+.btn-primary {
+  background-color: #f36100;
+  color: #ffffff;
+}
+
+.btn-details {
+  background-color: #f36100;
+  color: #ffffff;
+}
+
+.btn-favorites {
+  background-color: #f36100;
+  color: #ffffff;
+}
+
+.error-message {
+  color: #f36100;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .plat-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .plat-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-  }
-  
-  .plat-card:hover {
-    transform: scale(1.01);
-  }
-  
-  .plat-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .plat-info {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .plat-info h3 {
-    margin-top: 0;
-  }
-  
-  .plat-info p {
-    margin: 10px 0;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.plat-card, .plat-combination-card {
+  background-color: #1e1e1e;
+  border: 1px solid #f36100;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.plat-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.plat-info h3 {
+  font-size: 1.5em;
+  margin: 10px 0;
+  color: #f36100;
+}
+
+.plat-info p {
+  font-size: 1em;
+  margin: 5px 0;
+}
