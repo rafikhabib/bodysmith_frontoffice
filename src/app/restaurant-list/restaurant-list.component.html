@@ -1,0 +1,105 @@
+<div class="container">
+  <h2 class="section-title">Restaurant List</h2>
+  <div class="search-controls">
+    <input
+      type="text"
+      #searchString
+      (input)="searchRestaurants(searchString.value)"
+      placeholder="Search by address"
+      class="input-field"
+    />
+    <button
+      type="button"
+      class="btn btn-clear"
+      (click)="
+        clearSearch(searchString, maxDistance, categorySelector, platSelector)
+      "
+    >
+      Clear Search
+    </button>
+  </div>
+
+  <div class="search-filters">
+    <input
+      type="number"
+      #maxDistance
+      placeholder="Enter maxDistance"
+      class="input-field"
+    />
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="findNearbyRestaurants(maxDistance.valueAsNumber)"
+    >
+      Find Nearby Restaurants
+    </button>
+  </div>
+
+  <!-- Category dropdown -->
+  <div class="search-filters">
+    <select
+      #categorySelector
+      class="input-field"
+      (change)="searchByCategory(categorySelector.value)"
+    >
+      <option value="">Select a category</option>
+      <option *ngFor="let category of categories" [value]="category._id">
+        {{ category.libelle }}
+      </option>
+    </select>
+  </div>
+
+  <div class="search-filters">
+    <select
+      #platSelector
+      class="input-field"
+      (change)="searchByPlat(platSelector.value)"
+    >
+      <option value="">Select a Plat</option>
+      <option *ngFor="let plat of plats" [value]="plat._id">
+        {{ plat.nomPlat }}
+      </option>
+    </select>
+  </div>
+
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div
+    class="restaurant-grid"
+    *ngIf="restaurants.length > 0; else noRestaurants"
+  >
+    <div class="restaurant-card" *ngFor="let restaurant of restaurants">
+      <img
+        [src]="restaurant.imageRestaurant"
+        alt="{{ restaurant.nomRestaurant }}"
+        class="restaurant-image"
+      />
+      <div class="restaurant-info">
+        <h3>{{ restaurant.nomRestaurant }}</h3>
+        <p><strong>Address:</strong> {{ restaurant.adresseRestaurant }}</p>
+        <p>
+          <strong>Categories:</strong>
+          <span *ngFor="let category of restaurant.categorieRestaurant">
+            {{ category.libelle }}
+            <span *ngIf="!isLast(category, restaurant.categorieRestaurant)"
+              >,
+            </span>
+          </span>
+        </p>
+        <p>
+          <strong>Plats:</strong>
+          <span *ngFor="let plat of restaurant.plats">
+            {{ plat.nomPlat }}
+            <span *ngIf="!isLast(plat, restaurant.plats)">, </span>
+          </span>
+        </p>
+      </div>
+      <a [routerLink]="['/restaurant', restaurant._id]" class="btn btn-details"
+        >View Details</a
+      >
+    </div>
+  </div>
+  <ng-template #noRestaurants>
+    <p>No restaurants found.</p>
+  </ng-template>
+</div>

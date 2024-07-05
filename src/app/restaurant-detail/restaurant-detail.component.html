@@ -1,0 +1,46 @@
+<div *ngIf="restaurant" class="container">
+  <div class="restaurant-details">
+    <div class="restaurant-image-container">
+      <img
+        [src]="restaurant.imageRestaurant"
+        alt="{{ restaurant.nomRestaurant }}"
+        class="restaurant-image"
+      />
+    </div>
+    <div class="restaurant-info">
+      <h1 class="restaurant-title">{{ restaurant.nomRestaurant }}</h1>
+      <p class="restaurant-address">{{ restaurant.adresseRestaurant }}</p>
+
+      <h2 class="section-subtitle">Categories:</h2>
+      <ul class="category-list">
+        <li
+          *ngFor="let category of restaurant.categorieRestaurant"
+          class="category-item"
+        >
+          {{ category.libelle }}
+        </li>
+      </ul>
+
+      <h2 class="section-subtitle">Dishes:</h2>
+      <ul class="plat-list">
+        <li *ngFor="let plat of restaurant.plats" class="plat-item">
+          <p class="plat-detail"><strong>Name:</strong> {{ plat.nomPlat }}</p>
+          <p class="plat-detail">
+            <strong>Calories:</strong> {{ plat.calories }}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="map-container">
+    <img
+      src="https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=1600&height=600&center=lonlat:{{
+        restaurant.location.coordinates
+      }}&zoom=14&marker=lonlat:{{
+        restaurant.location.coordinates
+      }};type:awesome;color:%23bb3f73;size:x-large;icon:restaurant&apiKey=b574986973a042cb8d577b4d83053202"
+      alt="Restaurant location"
+      class="map-image"
+    />
+  </div>
+</div>

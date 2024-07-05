@@ -1,0 +1,88 @@
+body {
+    background-color: #151515;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+  }
+  
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #151515;
+  }
+  
+  .restaurant-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-image-container {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .restaurant-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    border: 1px solid #f36100;
+  }
+  
+  .restaurant-info {
+    flex: 2 1 400px;
+  }
+  
+  .restaurant-title {
+    font-size: 2.5em;
+    color: #f36100;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .restaurant-address {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .section-subtitle {
+    font-size: 1.8em;
+    margin-top: 20px;
+    color: #f36100;
+  }
+  
+  .category-list, .plat-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .category-item, .plat-item {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #ffffff;
+  }
+  
+  .plat-detail {
+    font-size: 1em;
+    margin: 5px 0;
+    color: #ffffff;
+  }
+  
+  .map-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .map-image {
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #f36100;
+    border-radius: 10px;
+  }
+  
