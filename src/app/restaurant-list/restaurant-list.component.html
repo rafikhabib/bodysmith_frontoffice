@@ -1,14 +1,16 @@
-<div>
-  <h2>Restaurant List</h2>
-  <div>
+<div class="container">
+  <h2 class="section-title">Restaurant List</h2>
+  <div class="search-controls">
     <input
       type="text"
       #searchString
       (input)="searchRestaurants(searchString.value)"
       placeholder="Search by address"
+      class="input-field"
     />
     <button
       type="button"
+      class="btn btn-clear"
       (click)="
         clearSearch(searchString, maxDistance, categorySelector, platSelector)
       "
@@ -17,10 +19,16 @@
     </button>
   </div>
 
-  <div>
-    <input type="number" #maxDistance placeholder="Enter maxDistance" />
+  <div class="search-filters">
+    <input
+      type="number"
+      #maxDistance
+      placeholder="Enter maxDistance"
+      class="input-field"
+    />
     <button
       type="button"
+      class="btn btn-primary"
       (click)="findNearbyRestaurants(maxDistance.valueAsNumber)"
     >
       Find Nearby Restaurants
@@ -28,9 +36,10 @@
   </div>
 
   <!-- Category dropdown -->
-  <div>
+  <div class="search-filters">
     <select
       #categorySelector
+      class="input-field"
       (change)="searchByCategory(categorySelector.value)"
     >
       <option value="">Select a category</option>
@@ -40,8 +49,12 @@
     </select>
   </div>
 
-  <div>
-    <select #platSelector (change)="searchByPlat(platSelector.value)">
+  <div class="search-filters">
+    <select
+      #platSelector
+      class="input-field"
+      (change)="searchByPlat(platSelector.value)"
+    >
       <option value="">Select a Plat</option>
       <option *ngFor="let plat of plats" [value]="plat._id">
         {{ plat.nomPlat }}
@@ -49,11 +62,8 @@
     </select>
   </div>
 
-  <ng-template #noRestaurants>
-    <p>No restaurants found.</p>
-  </ng-template>
-
   <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
   <div
     class="restaurant-grid"
     *ngIf="restaurants.length > 0; else noRestaurants"
@@ -84,7 +94,12 @@
           </span>
         </p>
       </div>
-      <a [routerLink]="['/restaurant', restaurant._id]">View Details</a>
+      <a [routerLink]="['/restaurant', restaurant._id]" class="btn btn-details"
+        >View Details</a
+      >
     </div>
   </div>
+  <ng-template #noRestaurants>
+    <p>No restaurants found.</p>
+  </ng-template>
 </div>

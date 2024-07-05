@@ -8,7 +8,7 @@ import { FavoritesService } from '../core/services/favorite-plans.service';
 })
 export class FavoritePlansComponent implements OnInit {
   favorites: any[] = [];
-  userId: string = '667c53e0cc6a8a9f98ef3f24'; // Use a real user ID from authentication
+  userId: string = '667c53e0cc6a8a9f98ef3f24';
 
   constructor(private favoritesService: FavoritesService) {}
 

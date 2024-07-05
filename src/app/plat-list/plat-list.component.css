@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: #151515;
@@ -56,6 +56,9 @@ body {
 .btn-details {
   background-color: #f36100;
   color: #ffffff;
+  margin-top: 10px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-favorites {

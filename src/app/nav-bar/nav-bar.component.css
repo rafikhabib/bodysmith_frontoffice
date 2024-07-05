@@ -1,71 +1,32 @@
-/* Style pour la barre de navigation */
-.navbar {
-    background-color: #28a745; /* Couleur verte */
-    border-bottom: 1px solid #218838; /* Bordure inférieure plus sombre */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    padding: 10px 20px; /* Espacement intérieur */
-}
-
-/* Style pour le lien de la marque */
-.navbar-brand {
-    font-size: 1.5rem; /* Taille de la police */
-    font-weight: bold; /* Gras */
-    color: #fff; /* Couleur du texte blanc */
-}
-
-/* Style pour les liens de la barre de navigation */
-.navbar-nav .nav-link {
-    color: #fff; /* Couleur du texte blanc */
-    font-size: 1rem; /* Taille de la police */
-    font-weight: 500; /* Poids de la police */
-    margin-right: 15px; /* Marge à droite entre les éléments */
-    transition: color 0.3s ease; /* Transition douce de la couleur du texte */
-}
-
-.navbar-nav .nav-link:hover {
-    color: #c3e6cb; /* Couleur du texte au survol */
-}
-
-/* Style pour le bouton de bascule */
-.navbar-toggler {
-    border-color: #fff; /* Couleur de la bordure blanche */
-}
-
-/* Style pour le panier à droite */
-.navbar-nav.ms-auto .nav-link {
-    color: #fff; /* Couleur du texte blanc */
-    font-size: 1rem; /* Taille de la police */
-    font-weight: 500; /* Poids de la police */
-}
-
-.navbar-nav.ms-auto .nav-link:hover {
-    text-decoration: underline; /* Soulignement au survol */
-}
-
-/* Style pour le bouton "Product" */
-.product-button {
-    position: relative; /* Position relative pour les pseudo-éléments */
-    padding: 10px 20px; /* Espacement interne */
-    border-radius: 5px; /* Coins arrondis */
-    background-color: transparent; /* Fond transparent par défaut */
-    transition: background-color 0.3s ease; /* Transition douce de la couleur de fond */
-    overflow: hidden; /* Masquer les éléments débordants */
-}
-
-/* Pseudo-élément pour l'effet 3D */
-.product-button::before {
-    content: ''; /* Contenu vide pour le pseudo-élément */
-    position: absolute; /* Position absolue par rapport au bouton */
-    top: 100%; /* Décaler vers le bas de la hauteur du bouton */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2); /* Fond légèrement transparent */
-    transform: translateY(-100%); /* Déplacer vers le haut pour cacher initialement */
-    transition: transform 0.3s ease; /* Transition douce de la transformation */
-}
-
-/* Animation de l'effet 3D au survol */
-.product-button:hover::before {
-    transform: translateY(0); /* Afficher le pseudo-élément en le déplaçant vers le haut */
-}
+.header-section {
+    background-color: #1e1e1e;
+    padding: 15px 0;
+  }
+  
+  .header-section .container-fluid {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .header-section .nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .header-section .nav-menu ul li {
+    margin: 0 15px;
+  }
+  
+  .header-section .nav-menu ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .header-section .nav-menu ul li a:hover {
+    color: #f36100;
+  }
+  
