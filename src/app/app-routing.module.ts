@@ -7,6 +7,8 @@ import { AddproductComponent } from "./addproduct/addproduct.component";
 import { EditComponent } from "./edit/edit.component";
 import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
 import {CommentaireComponent} from "./commentaire/commentaire.component";
+import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
+import {CommentaireComponent} from "./commentaire/commentaire.component";
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { PlatListComponent } from './plat-list/plat-list.component';
@@ -25,16 +27,19 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
+  { path: 'panier', component: PanierComponent }, // Assurez-vous que cette route est correcte
+  { path: 'add', component: AddproductComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'add-reclamation', component: AddReclamationComponent },
+  { path: 'categorie', component: CommentaireComponent },
   {path: '', redirectTo: 'product', pathMatch: 'full'}, // Redirection vers 'product' par défaut
   {
     path: 'product',
     component: ProductsListComponent,
     canActivate: [AuthGuard],
   },
-  {path: 'panier', component: PanierComponent}, // Assurez-vous que cette route est correcte
-  {path: 'add', component: AddproductComponent},
-  {path: 'edit', component: EditComponent},
-  {path: 'sessions', component: SessionsListComponent},
+{path: 'sessions', component: SessionsListComponent},
   {path: 'coaches', component: CoachesListComponent},
   {path: 'reserver', component: ReservationsComponent},
   {path: 'categories', component: CategorieComponent},
