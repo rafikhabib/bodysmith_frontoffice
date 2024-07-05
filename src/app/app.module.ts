@@ -10,14 +10,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { TndCurrencyPipe } from './product/tnd-currency.pipe';
+import { MatIconModule } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
-
 import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditComponent } from './edit/edit.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CategorieService } from './core/services/categorie.service';
 import { ProductService } from './core/services/product.service';
+import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
+import {CommentaireComponent} from "./commentaire/commentaire.component";
+import {MatListModule} from "@angular/material/list";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { PlatListComponent } from './plat-list/plat-list.component';
@@ -30,7 +44,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReservationsComponent } from './reservations/reservations.component';
 // import { ReservationsComponent } from './reservation/reservation.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +52,8 @@ import { ReservationsComponent } from './reservations/reservations.component';
     NotFoundComponent,
     ProductsListComponent,
     TndCurrencyPipe,
+    AddReclamationComponent,
+    CommentaireComponent,
 
     PanierComponent,
       AddproductComponent,
