@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { TndCurrencyPipe } from './product/tnd-currency.pipe';
+import { DatePipe } from '@angular/common';
 
 import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
@@ -22,6 +23,13 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import { PlatListComponent } from './plat-list/plat-list.component';
 import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
+import { SessionsListComponent } from './sessions-list/sessions-list.component';
+import { CoachesListComponent } from './coaches-list/coaches-list.component';
+import { AuthInterceptor } from './core/interceptors/auth-interceptor.service'; // Importer l'intercepteur
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReservationsComponent } from './reservations/reservations.component';
+// import { ReservationsComponent } from './reservation/reservation.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +41,12 @@ import { FavoritePlansComponent } from './favorite-plans/favorite-plans.componen
     TndCurrencyPipe,
 
     PanierComponent,
-    AddproductComponent,
+      AddproductComponent,
+      EditComponent,
+      SessionsListComponent,
+      CoachesListComponent,
+      ReservationsComponent,
+      // ReservationsComponent
     EditComponent,
 
     RestaurantListComponent,
@@ -41,6 +54,8 @@ import { FavoritePlansComponent } from './favorite-plans/favorite-plans.componen
     PlatListComponent,
     PlatDetailComponent,
     FavoritePlansComponent,
+    SessionsListComponent,
+    CoachesListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +63,9 @@ import { FavoritePlansComponent } from './favorite-plans/favorite-plans.componen
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [CategorieService, ProductService],
+  providers: [CategorieService, ProductService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

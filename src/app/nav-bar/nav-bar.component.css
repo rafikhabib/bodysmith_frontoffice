@@ -1,32 +1,51 @@
-.header-section {
-    background-color: #1e1e1e;
-    padding: 15px 0;
-  }
-  
-  .header-section .container-fluid {
+/* Style pour la barre de navigation */
+.navbar {
+    background-image: url('./../assets/img/breadcrumb-bg.jpg'); /* Image de fond */
+    background-size: cover; /* Couvrir toute la zone */
+    background-position: center; /* Centrer l'image */
+    border-bottom: 1px solid #333; /* Bordure inférieure légèrement plus sombre */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    padding: 10px 20px; /* Espacement intérieur */
+}
+
+/* Style pour le lien de la marque */
+.navbar-brand img {
+    height: 40px; /* Ajuster la hauteur de l'image */
+}
+
+/* Disposition horizontale des éléments de la liste et centrage */
+.navbar-nav {
     display: flex;
-    justify-content: center;
-  }
-  
-  .header-section .nav-menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
-  
-  .header-section .nav-menu ul li {
-    margin: 0 15px;
-  }
-  
-  .header-section .nav-menu ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
-  }
-  
-  .header-section .nav-menu ul li a:hover {
-    color: #f36100;
-  }
-  
+    justify-content: center; /* Centrer les liens */
+    align-items: center;
+    width: 100%; /* Occuper toute la largeur */
+}
+
+/* Style pour les liens de la barre de navigation */
+.navbar-nav .nav-link {
+    color: #fff; /* Couleur du texte blanc */
+    font-size: 1.1rem; /* Taille de la police légèrement augmentée */
+    font-weight: 500; /* Poids de la police */
+    margin: 0 20px; /* Marge à gauche et à droite pour espacement entre les éléments */
+    transition: color 0.3s ease; /* Transition douce de la couleur du texte */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff6f00; /* Couleur du texte au survol */
+}
+
+/* Style pour le bouton de bascule */
+.navbar-toggler {
+    border-color: #fff; /* Couleur de la bordure blanche */
+}
+
+/* Style pour les icônes sociales */
+.navbar-nav.ms-auto .nav-link {
+    color: #fff; /* Couleur du texte blanc */
+    font-size: 1.1rem; /* Taille de la police légèrement augmentée */
+    font-weight: 500; /* Poids de la police */
+}
+
+.navbar-nav.ms-auto .nav-link:hover {
+    color: #ff6f00; /* Couleur du texte au survol */
+}

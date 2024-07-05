@@ -1,0 +1,89 @@
+<!-- <p>reservations works!</p>
+
+
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="seanceId">Séance</label>
+      <select formControlName="seanceId" id="seanceId">
+        <option *ngFor="let seance of seances" [value]="seance.id">{{ seance.name }}</option>
+      </select>
+      <div *ngIf="reservationForm.get('seanceId')?.invalid && reservationForm.get('seanceId')?.touched">
+        Sélectionnez une séance.
+      </div>
+    </div>
+  
+    <div>
+      <label for="coachId">Coach</label>
+      <select formControlName="coachId" id="coachId">
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+      </select>
+      <div *ngIf="reservationForm.get('coachId')?.invalid && reservationForm.get('coachId')?.touched">
+        Sélectionnez un coach.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="reservationForm.invalid">Créer réservation</button>
+  </form> -->
+  <!-- <p>Reservations Works!</p>
+
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label for="seanceId">Séance</label>
+          <select formControlName="seance" id="seance" class="form-control">
+              <option *ngFor="let seance of seances" [value]="seance.id">{{ seance.name }}</option>
+          </select>
+          <div class="error-message" *ngIf="reservationForm.get('seance')?.invalid && reservationForm.get('seance')?.touched">
+              Sélectionnez une séance.
+          </div>
+      </div>
+  
+      <div class="form-group">
+          <label for="UserId">Coach</label>
+          <select formControlName="UserId" id="UserId" class="form-control">
+              <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+          </select>
+          <div class="error-message" *ngIf="reservationForm.get('UserId')?.invalid && reservationForm.get('UserId')?.touched">
+              Sélectionnez un coach.
+          </div>
+      </div>
+  
+      <button type="submit" class="submit-button" [disabled]="reservationForm.invalid">Créer réservation</button>
+  </form> -->
+
+
+
+
+
+  <p>Reservations Works!</p>
+
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="seanceId">Séance</label>
+      <ul id="seanceId" class="form-control">
+        <li *ngFor="let seance of seances">
+          <input type="radio" formControlName="seanceId" [value]="seance._id" id="seance{{seance._id}}">
+          <label for="seance{{seance._id}}">{{ seance.TypeEvent }} - {{ seance.DateEvent | date: 'short' }}</label>
+        </li>
+      </ul>
+      <div class="error-message" *ngIf="reservationForm.get('seanceId')?.invalid && reservationForm.get('seanceId')?.touched">
+        Sélectionnez une séance.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="UserId">Coach</label>
+      <ul id="UserId" class="form-control">
+        <li *ngFor="let user of users">
+          <input type="radio" formControlName="UserId" [value]="user._id" id="user{{user._id}}">
+          <label for="user{{user._id}}">{{ user.firstName }} {{ user.lastName }}</label>
+        </li>
+      </ul>
+      <div class="error-message" *ngIf="reservationForm.get('UserId')?.invalid && reservationForm.get('UserId')?.touched">
+        Sélectionnez un coach.
+      </div>
+    </div>
+  
+    <button type="submit" class="submit-button" [disabled]="reservationForm.invalid">Créer réservation</button>
+  </form>
+  
+  
