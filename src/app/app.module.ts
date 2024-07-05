@@ -104,6 +104,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ProfileComponent,
     UpdateProfileComponent,
     ChangePasswordComponent,
+      AddproductComponent,
+      EditComponent,
   ],
   imports: [
     BrowserModule,
