@@ -1,7 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <h2>List of Products</h2>
 
@@ -36,7 +32,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-md-3 col-sm-6" *ngFor="let product of products">
+      <div class="col-md-3 col-sm-6" *ngFor="let product of filteredProducts">
           <div class="product-grid3">
               <div class="product-image3">
                   <a href="#">
@@ -47,10 +43,14 @@
                     <li>
                         <a (click)="openShoppingDialog(product)"><i class="fa fa-search"></i></a>
                     </li>
-                    <li>
-                        <a *ngIf="product.quantity > 0" (click)="buyProduct($event,product)" href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li>
+                    <li *ngIf="!isAdmin">
+                        <a *ngIf="product.quantity > 0" (click)="buyProduct($event,product)" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                    <li *ngIf="!isAdmin">
                         <a *ngIf="product.quantity <= 0" [class.disabled-link]="true" (click)="buyProduct($event, product)" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                    <li *ngIf="isAdmin">
+                      <a href=""><i class="fa fa fa-pencil"></i></a>
                     </li>
                   </ul>
               </div>

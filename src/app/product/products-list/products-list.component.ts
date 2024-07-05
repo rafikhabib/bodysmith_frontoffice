@@ -108,14 +108,14 @@ export class ProductsListComponent implements OnInit {
       this.errorMessage = null;
     }
 
-    console.log(this.categoryName)
-
     this.filteredProducts = this.products.filter(product => {
       const matchesCategory = !this.categoryName || product.idCategorie.nom === this.categoryName;
       const matchesPriceRange = (!this.minPrice || product.price >= this.minPrice) &&
                                  (!this.maxPrice || product.price <= this.maxPrice);
       return matchesCategory && matchesPriceRange;
     });
+
+    console.log(this.filteredProducts)
   }
 
   resetFilters(): void {
