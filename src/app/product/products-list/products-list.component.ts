@@ -3,6 +3,9 @@ import { ProductService } from 'src/app/core/services/product.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CategorieService } from 'src/app/core/services/categorie.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ShoppingDialogComponent } from '../../shopping-dialog/shopping-dialog.component';
 
 @Component({
   selector: 'app-products-list',
@@ -24,14 +27,35 @@ export class ProductsListComponent implements OnInit {
 
   cart: any[] = [];
   categories : any[] | undefined;
+  isAdmin : boolean = true;
+
+  productForm: FormGroup = new FormGroup({
+    title: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+    description: new FormControl("", [
+    ]),
+    price: new FormControl("", [
+      Validators.required,
+      Validators.min(0.01)
+    ]),
+    idCategorie: new FormControl("", Validators.required),
+    quantity: new FormControl("", [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    image: new FormControl('', [Validators.required]),
+  });
 
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
     private categorieService: CategorieService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dialog: MatDialog
+    ) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -41,6 +65,23 @@ export class ProductsListComponent implements OnInit {
     )
   }
 
+  openShoppingDialog(product: any): void {
+    this.dialog.open(ShoppingDialogComponent, {
+      width: '80vw', // Set the width to 80% of the viewport width
+      maxWidth: '100vw', // Ensure it doesn't exceed the viewport width
+      maxHeight: '80vh', // Set a maximum height for the dialog
+      data: {
+        productName: product.title,
+        price: product.price,
+        description: product.description,
+        quantity: product.quantity,
+        image: product.image,
+        // Add more data as needed
+      }
+    });
+  }
+
+
   validateCategory(): boolean {
     const regex = /^[a-zA-Z0-9\s]*$/;
     return regex.test(this.categoryName);
@@ -49,6 +90,7 @@ export class ProductsListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().subscribe(
       (data) => {
+        data.forEach(e=> e.stars=this.generateStars());
         this.products = data;
         this.applyFilters(); // Apply filters once products are loaded
       },
@@ -95,7 +137,8 @@ export class ProductsListComponent implements OnInit {
     );
   }
 
-  buyProduct(product: any): void {
+  buyProduct(event: Event, product: any): void {
+    event.preventDefault(); // Prevent
     if (product.quantity > 0) {
 
           this.cartService.addToCart(product._id,this.userId,1).subscribe(
@@ -105,8 +148,8 @@ export class ProductsListComponent implements OnInit {
               this.productAddedToCart = null;
             }, 5000);
           });
-  
-  
+
+
     } else {
       console.warn('Product quantity is already 0');
       this.showOutOfStockNotification();
@@ -139,5 +182,16 @@ export class ProductsListComponent implements OnInit {
       this.maxPrice = 0;
     }
     this.applyFilters();
+  }
+
+  generateStars(): boolean[] {
+    const totalStars = Math.floor(Math.random() * 5) + 1; // Random number between 1 and 5
+    const stars = Array(5).fill(false); // Initialize stars array with false values
+
+    for (let i = 0; i < totalStars; i++) {
+      stars[i] = true; // Set stars to true up to totalStars
+    }
+
+    return stars;
   }
 }

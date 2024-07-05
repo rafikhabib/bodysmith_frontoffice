@@ -12,8 +12,10 @@ import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
 import { SessionsListComponent } from "./sessions-list/sessions-list.component";
 import { CoachesListComponent } from './coaches-list/coaches-list.component';
-// import { ReservationFormComponent } from "./reservation/reservation-form.component";
+import { ReservationFormComponent } from "./reservation/reservation-form.component";
 import { ReservationsComponent } from "./reservations/reservations.component";
+import { CategorieComponent } from "./categorie/categorie.component";
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'sessions', component: SessionsListComponent },
   { path: 'coaches', component: CoachesListComponent },
   {path : 'reserver', component :ReservationsComponent },
+  { path: 'categories', component: CategorieComponent },
 
   { path: 'restaurant-list', component: RestaurantListComponent },
   { path: 'restaurant/:id', component: RestaurantDetailComponent },
