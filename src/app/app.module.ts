@@ -14,9 +14,14 @@ import { TndCurrencyPipe } from './product/tnd-currency.pipe';
 import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditComponent } from './edit/edit.component';
+import { CategorieComponent } from './categorie/categorie.component';
 
-import { CategorieService } from './core/services/categorie.service'; 
-import { ProductService } from './core/services/product.service'; 
+import { CategorieService } from './core/services/categorie.service';
+import { ProductService } from './core/services/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShoppingDialogComponent } from './shopping-dialog/shopping-dialog.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -27,17 +32,20 @@ import { ProductService } from './core/services/product.service';
     NotFoundComponent,
     ProductsListComponent,
     TndCurrencyPipe,
-
     PanierComponent,
-      AddproductComponent,
-      EditComponent
+    AddproductComponent,
+    EditComponent,
+    CategorieComponent,
+    ShoppingDialogComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     CategorieService,

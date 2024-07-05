@@ -35,6 +35,7 @@ export class AddproductComponent implements OnInit{
   maxFileSize = 5 * 1024 * 1024;
   allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
   categories : any[] | undefined;
+  imgUrl : any = null;
 
   constructor(
     private router: Router,
@@ -44,9 +45,13 @@ export class AddproductComponent implements OnInit{
 
   ngOnInit(): void {
     this.categorieService.getAllCategories().subscribe(
-      data=> this.categories = data,
+      data=> {
+        this.categories = data;
+      },
       error=>console.log(error)
     )
+
+    this.imgUrl = "/assets/images/not_found.jpg"
   }
 
   addProduct() {
@@ -64,6 +69,8 @@ export class AddproductComponent implements OnInit{
     } else {
       this.markFormGroupTouched(this.productForm);
     }
+
+    this.imgUrl=null;
   }
 
   noSpecialCharactersValidator(): ValidatorFn {
@@ -88,6 +95,7 @@ export class AddproductComponent implements OnInit{
         return;
       }
       this.productForm.get('image')!.setValue(`/assets/images/${file.name}`);
+      this.imgUrl=this.productForm.get('image')?.value;
     }
   }
 
@@ -96,6 +104,7 @@ export class AddproductComponent implements OnInit{
       control.markAsTouched();
     });
   }
+
   navigateToEdit(): void {
     this.router.navigateByUrl('/edit'); // Navigue vers /edit
   }
