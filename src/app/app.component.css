@@ -1,0 +1,44 @@
+/* styles.css */
+.black{background-color: black;}
+/* Body styles */
+body {
+    font-family:  "Muli", sans-serif; ; /* Choisir une police de caractères appropriée */
+    background-color: black; /* Couleur de fond de la page */
+    color: white; /* Couleur du texte principal */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container styles */
+  .container {
+    width: 90%; /* Largeur du contenu principal */
+    max-width: 1200px; /* Largeur maximale du contenu */
+    margin: 20px auto; /* Centrer le contenu avec une marge */
+  }
+  
+  /* Header styles */
+  header {
+    background-color: orange; /* Couleur de fond de l'en-tête */
+    color: black; /* Couleur du texte de l'en-tête */
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #333; /* Couleur de fond du pied de page */
+    color: white; /* Couleur du texte du pied de page */
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Link styles */
+  a {
+    color: orange; /* Couleur des liens */
+    text-decoration: none; /* Supprimer les soulignements des liens */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Souligner les liens au survol */
+  }
+  

@@ -1,47 +1,148 @@
-/* Coaches List Styles */
+/* styles.css (ou votre fichier de styles principal) */
+
+/* Style pour l'arrière-plan de la page */
+body {
+  background-color: black;
+  color: white;
+  font-family: "Muli", sans-serif;
+}
+
+/* Style pour le tableau */
 .table {
-    width: 100%;
-    margin: 2rem 0;
-    background-color: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-  }
-  
-  .table thead {
-    background-color: #28a745; /* Green header */
-    color: white;
-    text-align: left;
-  }
-  
-  .table tbody tr {
-    border-bottom: 1px solid #e9ecef;
-  }
-  
-  .table tbody tr:hover {
-    background-color: #f8f9fa; /* Light grey on hover */
-  }
-  
-  .table td, .table th {
-    padding: 1rem;
-  }
-  
-  .alert {
-    margin-top: 1rem;
-  }
-  
-  .no-coaches {
-    text-align: center;
-    color: #6c757d;
-    font-size: 1.2rem;
-  }
-  
-  .btn-danger {
-    background-color: #dc3545; /* Red background for delete button */
-    border: none;
-  }
-  
-  .btn-danger:hover {
-    background-color: #c82333; /* Darker red on hover */
-  }
-  
+  width: 90%;
+  max-width: 100%;
+  margin: 20px auto;
+  background-color: black;
+  color: white;
+  border-collapse: collapse;
+  border: 2px solid rgb(255, 111, 0);
+}
+
+/* Style pour l'en-tête du tableau */
+.table thead th {
+  background-color: rgb(255, 111, 0);
+  color: black;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-right: 1px solid black;
+}
+
+/* Style pour les cellules du corps du tableau */
+.table tbody td {
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid black;
+}
+
+/* Alternance des couleurs pour les lignes du tableau */
+.table tbody tr:nth-child(even) {
+  background-color: #222;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #333;
+}
+
+/* Style pour la colonne de droite avec les horaires */
+.table tbody td:first-child {
+  background-color: black;
+  color: rgb(255, 111, 0);
+}
+
+/* Style pour les cellules de données */
+.table tbody td div {
+  padding: 5px;
+}
+
+/* Style pour le nom de la session */
+.table tbody td div h5 {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Style pour la salle de sport */
+.table tbody td div span {
+  color: gray;
+}
+
+/* Hover sur les cellules */
+.table tbody td:hover {
+  background-color: rgb(255, 111, 0);
+  color: black;
+}
+
+/* Style pour la section de l'équipe */
+.team-section {
+  padding: 60px 0;
+  background-color: #111;
+}
+
+.team-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.team-title .section-title span {
+  font-size: 14px;
+  color: rgb(255, 111, 0);
+}
+
+.team-title .section-title h2 {
+  font-size: 36px;
+  color: white;
+}
+
+.appoinment-btn {
+  background-color: rgb(255, 111, 0);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.ts-item {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.ts-item .set-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+.ts-item .ts_text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.ts-item .ts_text h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ts-item .ts_text span {
+  font-size: 14px;
+  color: rgb(255, 111, 0);
+}
+
+.ts-item .ts_text p {
+  margin: 10px 0;
+}
+
+.tt_social a {
+  color: white;
+  margin-right: 10px;
+  transition: color 0.3s;
+}
+
+.tt_social a:hover {
+  color: rgb(255, 111, 0);
+}

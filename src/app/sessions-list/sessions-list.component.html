@@ -1,31 +1,27 @@
-
-
-<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+<!-- <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
 <div *ngIf="sessions.length > 0" class="table-responsive">
   <table class="table">
     <thead>
       <tr>
-        <th>Type Cours</th>
-        <th>Salle de sport</th>
-        <th>Date session</th>
-
-        <th>Heure debut</th>
-        <th>Heure Fin</th>
-        <th>Actions</th>
+        <th>Heure</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let session of sessions">
-
-        <td>{{ session.TypeEvent }}</td>
-        <td>{{ session.IdSalleDeSport }} </td>
-        <td>  {{ session.DateEvent | date : 'dd/MM/yyyy'}} </td>
-
-        <td>{{ session.HeureDebutEvent | date : 'HH:mm' }}</td>
-        <td>{{ session.HeureFinEvent | date : 'HH:mm'}}</td>
-        <td>
-          <button (click)="reserver(session.id)" class="btn btn-danger">Réserver</button>
+      <tr *ngFor="let time of getSortedTimeSlots()">
+        <td>{{ time }}</td>
+        <td *ngFor="let day of getDays()">
+          <div *ngIf="getSessionForTimeAndDay(time, day)">
+            <h5>{{ getSessionForTimeAndDay(time, day)?.TypeEvent }}</h5>
+            <span>{{ getSessionForTimeAndDay(time, day)?.IdSalleDeSport }}</span>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -33,5 +29,129 @@
 </div>
 
 <div *ngIf="sessions.length === 0" class="no-sessions">
-  <p>No sessions available.</p>
+  <p>Aucune session disponible.</p>
+</div> -->
+<!-- 
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div *ngIf="sessions.length > 0" class="table-responsive schedule-table">
+  <div class="schedule-header">
+    <h2 class="title">FIND YOUR TIME</h2>
+ 
+  </div>
+ 
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of getSortedTimeSlots()">
+        <td class="time-slot">{{ time }}</td>
+        <td *ngFor="let day of getDays()" [ngClass]="{ 'has-session': getSessionForTimeAndDay(time, day) }">
+          <div *ngIf="getSessionForTimeAndDay(time, day)" class="session">
+            <h5>{{ getSessionForTimeAndDay(time, day)?.TypeEvent }}</h5>
+            <span>{{ getSessionForTimeAndDay(time, day)?.IdSalleDeSport }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="sessions.length === 0" class="no-sessions">
+  <p>Aucune session disponible.</p>
+</div> -->
+<!-- 
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div class="filter">
+  <label for="week-picker">Sélectionnez la semaine :</label>
+  <input type="week" id="week-picker" (change)="onWeekChange($event)" />
+</div>
+
+<div *ngIf="filteredSessions.length > 0" class="table-responsive schedule-table">
+  <div class="schedule-header">
+    <h2 class="title">FIND YOUR TIME</h2>
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of getSortedTimeSlots()">
+        <td class="time-slot">{{ time }}</td>
+        <td *ngFor="let day of getDays()" [ngClass]="{ 'has-session': getSessionForTimeAndDay(time, day) }">
+          <div *ngIf="getSessionForTimeAndDay(time, day)" class="session">
+            <h5>{{ getSessionForTimeAndDay(time, day)?.TypeEvent }}</h5>
+            <span>{{ getSessionForTimeAndDay(time, day)?.IdSalleDeSport }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="filteredSessions.length === 0" class="no-sessions">
+  <p>Aucune session disponible.</p>
+</div> -->
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div class="schedule-header">
+  <h2 class="title">FIND YOUR TIME</h2>
+  <div class="filter">
+    <label for="week-picker">Sélectionnez la semaine :</label>
+    <input type="week" id="week-picker" (change)="onWeekChange($event)" class="week-picker" />
+  </div>
+</div>
+
+<div *ngIf="filteredSessions.length > 0" class="table-responsive schedule-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of getSortedTimeSlots()">
+        <td class="time-slot">{{ time }}</td>
+        <td *ngFor="let day of getDays()" [ngClass]="{ 'has-session': getSessionForTimeAndDay(time, day) }">
+          <div *ngIf="getSessionForTimeAndDay(time, day)" class="session">
+            <h5>{{ getSessionForTimeAndDay(time, day)?.TypeEvent }}</h5>
+            <span>{{ getSessionForTimeAndDay(time, day)?.IdSalleDeSport }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="filteredSessions.length === 0" class="no-sessions">
+  <p>Aucune session disponible.</p>
 </div>

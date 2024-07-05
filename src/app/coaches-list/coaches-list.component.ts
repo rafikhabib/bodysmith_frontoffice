@@ -14,7 +14,7 @@ export class CoachesListComponent {
   piw: boolean = false;
 
   constructor(private coachesService: CoachesService, private cdr: ChangeDetectorRef) {
-   
+    
     this.coachesService.getCoaches().subscribe(
       (data) => {
         console.log(data);
@@ -27,19 +27,5 @@ export class CoachesListComponent {
       }
     );
   }
- 
 
-
-
-  deleteCoach(id: string): void {
-    this.coachesService.deleteCoach(id).subscribe(
-      () => {
-        this.coaches = this.coaches.filter(coach => coach._id !== id);
-      },
-      (error) => {
-        this.errorMessage = 'Error deleting coach';
-        console.error(error);
-      }
-    );
-  }
 }

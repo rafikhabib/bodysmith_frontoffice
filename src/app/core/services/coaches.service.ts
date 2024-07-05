@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class CoachesService {
     const token = localStorage.getItem('authToken'); 
     if (!token) {
         console.error('No auth token found in localStorage');
-        // Handle the case when the token is missing
+
         return new Observable(observer => {
           observer.error('No auth token found');
           observer.complete();
@@ -28,7 +28,9 @@ export class CoachesService {
     console.log('Token:', token);
     console.log('Headers:', headers);
 
-    return this.http.get<any[]>(this.baseUrl, { headers });
+    return this.http.get<any>(this.baseUrl, { headers }).pipe(
+      map(response => response.coaches)
+    );
   }
 
 

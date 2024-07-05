@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { TndCurrencyPipe } from './product/tnd-currency.pipe';
+import { DatePipe } from '@angular/common';
 
 import { PanierComponent } from './panier/panier.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
@@ -26,6 +27,9 @@ import { SessionsListComponent } from './sessions-list/sessions-list.component';
 import { CoachesListComponent } from './coaches-list/coaches-list.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor.service'; // Importer l'intercepteur
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReservationsComponent } from './reservations/reservations.component';
+// import { ReservationsComponent } from './reservation/reservation.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +41,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     TndCurrencyPipe,
 
     PanierComponent,
-    AddproductComponent,
+      AddproductComponent,
+      EditComponent,
+      SessionsListComponent,
+      CoachesListComponent,
+      ReservationsComponent,
+      // ReservationsComponent
     EditComponent,
 
     RestaurantListComponent,
@@ -54,8 +63,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [CategorieService, ProductService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [CategorieService, ProductService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
