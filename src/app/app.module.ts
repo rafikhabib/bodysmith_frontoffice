@@ -31,6 +31,7 @@ import {CommentaireComponent} from "./commentaire/commentaire.component";
 import {MatListModule} from "@angular/material/list";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import { NotificationComponent } from './notification/notification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +42,11 @@ import {MatSelectModule} from "@angular/material/select";
     TndCurrencyPipe,
     AddReclamationComponent,
     CommentaireComponent,
-
+    NotificationComponent,
     PanierComponent,
       AddproductComponent,
-      EditComponent
+      EditComponent,
+      NotificationComponent
   ],
   imports: [
     BrowserModule,

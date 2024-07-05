@@ -7,6 +7,7 @@ import { AddproductComponent } from "./addproduct/addproduct.component";
 import { EditComponent } from "./edit/edit.component";
 import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
 import {CommentaireComponent} from "./commentaire/commentaire.component";
+import {NotificationComponent} from "./notification/notification.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'edit', component: EditComponent },
   { path: 'add-reclamation', component: AddReclamationComponent },
   { path: 'categorie', component: CommentaireComponent },
+  { path: 'notification', component: NotificationComponent },
   { path: '**', component: NotFoundComponent } // Route par défaut pour les chemins inconnus
 ];
 
