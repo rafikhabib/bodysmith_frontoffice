@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PanierComponent } from './panier/panier.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
-import { EditComponent } from './edit/edit.component';
+import { PanierComponent } from "./panier/panier.component";
+import { AddproductComponent } from "./addproduct/addproduct.component";
+import { EditComponent } from "./edit/edit.component";
+import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
+import {CommentaireComponent} from "./commentaire/commentaire.component";
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { PlatListComponent } from './plat-list/plat-list.component';
@@ -46,8 +48,9 @@ const routes: Routes = [
   {path: 'plat-list', component: PlatListComponent},
   {path: 'plat/:id', component: PlatDetailComponent},
   {path: 'favorites', component: FavoritePlansComponent},
-
-  {path: '**', component: NotFoundComponent}, // Route par défaut pour les chemins inconnus
+{ path: 'add-reclamation', component: AddReclamationComponent },
+  { path: 'categorie', component: CommentaireComponent },
+  { path: '**', component: NotFoundComponent } // Route par défaut pour les chemins inconnus
 ];
 
 @NgModule({
