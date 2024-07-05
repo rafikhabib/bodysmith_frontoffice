@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ProductService } from 'src/app/core/services/product.service';
-import { CartService } from 'src/app/core/services/cart.service';
-import { CategorieService } from 'src/app/core/services/categorie.service';
-import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ShoppingDialogComponent } from '../../shopping-dialog/shopping-dialog.component';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ProductService} from 'src/app/core/services/product.service';
+import {CartService} from 'src/app/core/services/cart.service';
+import {CategorieService} from 'src/app/core/services/categorie.service';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {ShoppingDialogComponent} from '../../shopping-dialog/shopping-dialog.component';
 
 @Component({
   selector: 'app-products-list',
@@ -13,8 +13,8 @@ import { ShoppingDialogComponent } from '../../shopping-dialog/shopping-dialog.c
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  @ViewChild('popupNotification', { static: false }) popupNotification!: ElementRef;
-  @ViewChild('outOfStockNotification', { static: false }) outOfStockNotification!: ElementRef;
+  @ViewChild('popupNotification', {static: false}) popupNotification!: ElementRef;
+  @ViewChild('outOfStockNotification', {static: false}) outOfStockNotification!: ElementRef;
 
   products: any[] = [];
   filteredProducts: any[] = [];
@@ -26,16 +26,14 @@ export class ProductsListComponent implements OnInit {
   userId: string = "667849cef7bb9f08e3c40fec";
 
   cart: any[] = [];
-  categories : any[] | undefined;
-  isAdmin : boolean = true;
+  categories: any[] | undefined;
 
   productForm: FormGroup = new FormGroup({
     title: new FormControl("", [
       Validators.required,
       Validators.minLength(6),
     ]),
-    description: new FormControl("", [
-    ]),
+    description: new FormControl("", []),
     price: new FormControl("", [
       Validators.required,
       Validators.min(0.01)
@@ -48,20 +46,19 @@ export class ProductsListComponent implements OnInit {
     image: new FormControl('', [Validators.required]),
   });
 
-
   constructor(
     private productService: ProductService,
     private cartService: CartService,
     private categorieService: CategorieService,
     private router: Router,
     private dialog: MatDialog
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
     this.categorieService.getAllCategories().subscribe(
-      data=> this.categories = data,
-      error=>console.log(error)
+      data => this.categories = data,
+      error => console.log(error)
     )
   }
 
@@ -90,7 +87,7 @@ export class ProductsListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().subscribe(
       (data) => {
-        data.forEach(e=> e.stars=this.generateStars());
+        data.forEach(e => e.stars = this.generateStars());
         this.products = data;
         this.applyFilters(); // Apply filters once products are loaded
       },
@@ -111,7 +108,7 @@ export class ProductsListComponent implements OnInit {
     this.filteredProducts = this.products.filter(product => {
       const matchesCategory = !this.categoryName || product.idCategorie.nom === this.categoryName;
       const matchesPriceRange = (!this.minPrice || product.price >= this.minPrice) &&
-                                 (!this.maxPrice || product.price <= this.maxPrice);
+        (!this.maxPrice || product.price <= this.maxPrice);
       return matchesCategory && matchesPriceRange;
     });
 
@@ -141,13 +138,13 @@ export class ProductsListComponent implements OnInit {
     event.preventDefault(); // Prevent
     if (product.quantity > 0) {
 
-          this.cartService.addToCart(product._id,this.userId,1).subscribe(
-            data => {
-            this.showPopupNotification();
-            setTimeout(() => {
-              this.productAddedToCart = null;
-            }, 5000);
-          });
+      this.cartService.addToCart(product._id, this.userId, 1).subscribe(
+        data => {
+          this.showPopupNotification();
+          setTimeout(() => {
+            this.productAddedToCart = null;
+          }, 5000);
+        });
 
 
     } else {

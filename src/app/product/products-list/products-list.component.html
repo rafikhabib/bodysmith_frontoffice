@@ -43,15 +43,15 @@
                     <li>
                         <a (click)="openShoppingDialog(product)"><i class="fa fa-search"></i></a>
                     </li>
-                    <li *ngIf="!isAdmin">
+                    <li>
                         <a *ngIf="product.quantity > 0" (click)="buyProduct($event,product)" href="#"><i class="fa fa-shopping-cart"></i></a>
                     </li>
-                    <li *ngIf="!isAdmin">
+                    <li>
                         <a *ngIf="product.quantity <= 0" [class.disabled-link]="true" (click)="buyProduct($event, product)" href="#"><i class="fa fa-shopping-cart"></i></a>
                     </li>
-                    <li *ngIf="isAdmin">
-                      <a href=""><i class="fa fa fa-pencil"></i></a>
-                    </li>
+<!--                    <li *ngIf="isAdmin">-->
+<!--                      <a href=""><i class="fa fa fa-pencil"></i></a>-->
+<!--                    </li>-->
                   </ul>
               </div>
               <div class="product-content">

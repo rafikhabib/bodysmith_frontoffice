@@ -12,7 +12,7 @@ import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 import { FavoritePlansComponent } from './favorite-plans/favorite-plans.component';
 import { SessionsListComponent } from "./sessions-list/sessions-list.component";
 import { CoachesListComponent } from './coaches-list/coaches-list.component';
-import { ReservationFormComponent } from "./reservation/reservation-form.component";
+// import { ReservationFormComponent } from "./reservation/reservation-form.component";
 import { ReservationsComponent } from "./reservations/reservations.component";
 import { CategorieComponent } from "./categorie/categorie.component";
 import { AuthGuard } from './core/auth/guards/auth.guard';
