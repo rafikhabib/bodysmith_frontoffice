@@ -44,6 +44,23 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReservationsComponent } from './reservations/reservations.component';
 // import { ReservationsComponent } from './reservation/reservation.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CategorieService } from './core/services/categorie.service';
+import { ProductService } from './core/services/product.service';
+import {AddReclamationComponent} from "./add-reclamation/add-reclamation.component";
+import {CommentaireComponent} from "./commentaire/commentaire.component";
+import {MatListModule} from "@angular/material/list";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,29 +71,29 @@ import { ReservationsComponent } from './reservations/reservations.component';
     TndCurrencyPipe,
     AddReclamationComponent,
     CommentaireComponent,
-
     PanierComponent,
       AddproductComponent,
       EditComponent,
-      SessionsListComponent,
-      CoachesListComponent,
-      ReservationsComponent,
-      // ReservationsComponent
-    EditComponent,
-
-    RestaurantListComponent,
-    RestaurantDetailComponent,
-    PlatListComponent,
-    PlatDetailComponent,
-    FavoritePlansComponent,
-    SessionsListComponent,
-    CoachesListComponent
+      NotificationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
