@@ -130,9 +130,7 @@ export class PlatListComponent implements OnInit {
     const plats = [plan.entree._id, plan.platPricipale._id, plan.dessert._id];
     const totalCalories = plan.totalCalories;
 
-    this.favoritesService
-      .addFavorite(this.userId, plats, totalCalories)
-      .subscribe();
+    this.favoritesService.addFavorite(plats, totalCalories).subscribe();
   }
 
   goToDetails(id: string): void {
