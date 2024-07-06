@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ShoppingDialogComponent} from '../../shopping-dialog/shopping-dialog.component';
+import {AuthService} from "../../core/auth/auth.service";
 
 @Component({
   selector: 'app-products-list',
@@ -23,7 +24,7 @@ export class ProductsListComponent implements OnInit {
   categoryName: string = '';
   productAddedToCart: number | null = null;
   errorMessage: string | null = null;
-  userId: string = "667849cef7bb9f08e3c40fec";
+  userId: string
 
   cart: any[] = [];
   categories: any[] | undefined;
@@ -50,11 +51,14 @@ export class ProductsListComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private categorieService: CategorieService,
+    private authService: AuthService,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
+    this.userId = this.authService.getUserFromStorage()._id
     this.getProducts();
     this.categorieService.getAllCategories().subscribe(
       data => this.categories = data,

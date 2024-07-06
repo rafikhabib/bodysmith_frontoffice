@@ -47,7 +47,13 @@ export class CartService {
     return this.http.delete<any>(`${this.apiUrlCart}/supprimer/${userId}`);
   }
 
-  validateCart(): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlCart}/valider`, {});
+  validateCart(userId: any): Observable<any> {
+    const body = (() => {
+      return {
+        userId: userId,
+      };
+    })();
+
+    return this.http.post<any>(`${this.apiUrlCart}/valider`, body);
   }
 }
