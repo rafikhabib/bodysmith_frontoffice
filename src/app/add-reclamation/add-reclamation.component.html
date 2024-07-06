@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Ajouter une réclamation</h1>
+  <h3>Veuillez remplir les champs obligatoires</h3>
+  <form [formGroup]="reclamation" (ngSubmit)="add()">
+    <div class="mb-3">
+      <label class="form-label">
+        Titre
+      </label>
+      <input class="form-control" formControlName="title"><br>
+      <div *ngIf="reclamation.get('title')!.invalid && (reclamation.get('title')!.touched || reclamation.get('title')!.dirty)" class="alert alert-danger">
+        <div *ngIf="reclamation.get('title')!.errors?.['required']" class="text-red-400">
+          Le titre est obligatoire
+        </div>
+      </div>
+    </div>
+y
+    <div class="mb-3">
+      <label class="form-label">
+        Description
+      </label>
+      <input class="form-control" formControlName="description"><br>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Email
+      </label>
+      <input class="form-control" formControlName="email"><br>
+      <div *ngIf="reclamation.get('email')!.invalid && (reclamation.get('email')!.touched || reclamation.get('email')!.dirty)" class="alert alert-danger">
+        <div *ngIf="reclamation.get('email')!.errors?.['required']" class="text-red-400">
+          L'email est obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Numéro de téléphone de la réclamation
+      </label>
+      <input class="form-control" formControlName="numTelReclamation"><br>
+      <div *ngIf="reclamation.get('numTelReclamation')!.invalid && (reclamation.get('numTelReclamation')!.touched || reclamation.get('numTelReclamation')!.dirty)" class="alert alert-danger">
+        <div *ngIf="reclamation.get('numTelReclamation')!.errors?.['required']" class="text-red-400">
+          Le numéro de téléphone est requis
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Pièce Jointe :
+      </label>
+      <input type="file"/><br>
+    </div>
+
+    <!-- Selection list for services or typeReclamation -->
+    <div class="mb-3">
+      <label class="form-label">
+        Service ou Type de Réclamation :
+      </label>
+      <select class="form-control" formControlName="serviceId">
+        <option *ngFor="let service of services" [value]="service._id">{{ service.libelle }}</option>
+      </select>
+    </div>
+
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
