@@ -17,6 +17,9 @@ import { ReservationsComponent } from "./reservations/reservations.component";
 import { CategorieComponent } from "./categorie/categorie.component";
 import { AuthGuard } from './core/auth/guards/auth.guard';
 import { LoginComponent } from './sign-in/sign-in.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -34,6 +37,9 @@ const routes: Routes = [
   {path: 'reserver', component: ReservationsComponent},
   {path: 'categories', component: CategorieComponent},
   {path: 'sign-in', component: LoginComponent},
+  { path: 'profile', component: ProfileComponent },
+  { path: 'update-profile', component: UpdateProfileComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
 
   {path: 'restaurant-list', component: RestaurantListComponent},
   {path: 'restaurant/:id', component: RestaurantDetailComponent},

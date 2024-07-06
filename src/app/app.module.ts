@@ -35,6 +35,9 @@ import { ShoppingDialogComponent } from './shopping-dialog/shopping-dialog.compo
 
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     FavoritePlansComponent,
     CategorieComponent,
     ShoppingDialogComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

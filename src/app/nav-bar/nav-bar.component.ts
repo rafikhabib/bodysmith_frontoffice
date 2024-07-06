@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../core/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +10,7 @@ import { AuthService } from '../core/auth/auth.service';
 export class NavBarComponent {
   isLoggedIn = false; // Flag to track login state
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => {
@@ -20,4 +21,5 @@ export class NavBarComponent {
   logout(): void {
     this.authService.logout();
   }
+  
 }
