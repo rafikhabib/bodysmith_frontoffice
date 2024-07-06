@@ -94,4 +94,11 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
+  isLoggedIn(): boolean {
+    return this.hasToken();
+  }
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }
