@@ -1,5 +1,3 @@
-// login.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -57,9 +55,24 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         (error) => {
-          this.error = error;
+          if (
+            error.message === 'Access denied. Invalid role or inactive account.'
+          ) {
+            this.error = 'Access denied. Invalid role or inactive account.';
+          } else {
+            this.error = 'Invalid credentials.';
+          }
           this.loading = false;
         }
       );
+  }
+  onSignUp() {
+    window.open('http://localhost:4200/select', '_blank');
+  }
+  signInWithGoogle(): void {
+    window.location.href = 'http://127.0.0.1:9090/auth/google';
+  }
+  forgotPassword(): void {
+    window.open('http://localhost:4200/forgot-password');
   }
 }

@@ -1,0 +1,36 @@
+<!-- src/app/profile/profile.component.html -->
+<div *ngIf="user" class="profile-container">
+  <div class="profile-header">
+    <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+    <button (click)="navigateToUpdateProfile()" class="btn btn-primary">
+      Update Profile
+    </button>
+    <button (click)="navigateToChangePassword()" class="btn btn-secondary">
+      Change Password
+    </button>
+  </div>
+  <div class="profile-details">
+    <p><strong>Nickname:</strong> {{ user.nickName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Birth Date:</strong> {{ user.birthDate | date : "longDate" }}</p>
+    <p><strong>Address:</strong> {{ user.adresse }}</p>
+    <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
+    <p>
+      <strong>Account Active:</strong>
+      <span [ngClass]="{ active: user.active, inactive: !user.active }">{{
+        user.active ? "Yes" : "No"
+      }}</span>
+    </p>
+    <p>
+      <strong>Account Approved:</strong>
+      <span
+        [ngClass]="{
+          approved: user.isApproved,
+          'not-approved': !user.isApproved
+        }"
+        >{{ user.isApproved ? "Yes" : "No" }}</span
+      >
+    </p>
+  </div>
+</div>

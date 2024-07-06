@@ -51,9 +51,6 @@ export class AuthService {
               throw new Error('No token found in the response');
             }
             if (!user.isApproved) {
-              // this.router.navigateByUrl(
-              //   'http://localhost:4200/confirmation-required'
-              // );
               window.open(
                 'http://localhost:4200/confirmation-required',
                 '_blank'
@@ -70,12 +67,19 @@ export class AuthService {
             this.currentUserSubject.next(user);
             return user;
           } else {
+            console.log(
+              Error('Access denied. Invalid role or inactive account.')
+            );
             throw new Error('Access denied. Invalid role or inactive account.');
           }
         }),
         catchError((error) => {
-          console.log('Error during login:', error.error.message);
-          return throwError(error.error.message);
+          const errorMessage =
+            error.error?.message ||
+            error.message ||
+            'An unknown error occurred';
+          console.log('Error during login:', errorMessage);
+          return throwError(() => new Error(errorMessage));
         })
       );
   }
