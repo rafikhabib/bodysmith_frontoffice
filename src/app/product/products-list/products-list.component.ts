@@ -58,7 +58,6 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = this.authService.getUserFromStorage()._id
     this.getProducts();
     this.categorieService.getAllCategories().subscribe(
       data => this.categories = data,
@@ -139,6 +138,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   buyProduct(event: Event, product: any): void {
+    let user = this.authService.getUserFromStorage();
+
+    if(user === null){
+      this.router.navigate(["/sign-in"])
+    }
+
+    this.userId = user._id
     event.preventDefault(); // Prevent
     if (product.quantity > 0) {
 

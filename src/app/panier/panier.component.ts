@@ -82,6 +82,9 @@ export class PanierComponent implements OnInit {
   }
 
   validateOrder(): void {
+    if(!this.userId){
+      this.router.navigate(["/sign-in"])
+    }
     if (this.products.length > 0) {
       this.cartService.validateCart(this.userId).subscribe(() => {
         this.cart = [];
