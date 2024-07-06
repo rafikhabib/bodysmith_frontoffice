@@ -14,28 +14,39 @@ import { SessionsListComponent } from "./sessions-list/sessions-list.component";
 import { CoachesListComponent } from './coaches-list/coaches-list.component';
 // import { ReservationFormComponent } from "./reservation/reservation-form.component";
 import { ReservationsComponent } from "./reservations/reservations.component";
+import { CategorieComponent } from "./categorie/categorie.component";
+import { AuthGuard } from './core/auth/guards/auth.guard';
+import { LoginComponent } from './sign-in/sign-in.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo: 'product', pathMatch: 'full' }, // Redirection vers 'product' par défaut
-  { path: 'product', component: ProductsListComponent },
-  { path: 'panier', component: PanierComponent }, // Assurez-vous que cette route est correcte
-  { path: 'add', component: AddproductComponent },
-  { path: 'edit', component: EditComponent },
-  { path: 'sessions', component: SessionsListComponent },
-  { path: 'coaches', component: CoachesListComponent },
-  {path : 'reserver', component :ReservationsComponent },
+  {path: '', redirectTo: 'product', pathMatch: 'full'}, // Redirection vers 'product' par défaut
+  {
+    path: 'product',
+    component: ProductsListComponent,
+    canActivate: [AuthGuard],
+  },
+  {path: 'panier', component: PanierComponent}, // Assurez-vous que cette route est correcte
+  {path: 'add', component: AddproductComponent},
+  {path: 'edit', component: EditComponent},
+  {path: 'sessions', component: SessionsListComponent},
+  {path: 'coaches', component: CoachesListComponent},
+  {path: 'reserver', component: ReservationsComponent},
+  {path: 'categories', component: CategorieComponent},
+  {path: 'sign-in', component: LoginComponent},
 
-  { path: 'restaurant-list', component: RestaurantListComponent },
-  { path: 'restaurant/:id', component: RestaurantDetailComponent },
-  { path: 'plat-list', component: PlatListComponent },
-  { path: 'plat/:id', component: PlatDetailComponent },
-  { path: 'favorites', component: FavoritePlansComponent },
+  {path: 'restaurant-list', component: RestaurantListComponent},
+  {path: 'restaurant/:id', component: RestaurantDetailComponent},
+  {path: 'plat-list', component: PlatListComponent},
+  {path: 'plat/:id', component: PlatDetailComponent},
+  {path: 'favorites', component: FavoritePlansComponent},
 
-  { path: '**', component: NotFoundComponent }, // Route par défaut pour les chemins inconnus
+  {path: '**', component: NotFoundComponent}, // Route par défaut pour les chemins inconnus
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

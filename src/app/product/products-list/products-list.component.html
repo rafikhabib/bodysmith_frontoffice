@@ -1,67 +1,80 @@
+
 <h2>List of Products</h2>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div class="filter-section">
-  <div>
-    <label for="minPrice">Minimum Price:</label>
-    <input type="number" id="minPrice" [(ngModel)]="minPrice" (input)="validateAndAdjustPrices()" min="0" />
+    <div>
+      <label for="minPrice">Minimum Price:</label>
+      <input type="number" id="minPrice" [(ngModel)]="minPrice" (input)="validateAndAdjustPrices()" min="0" />
+    </div>
+
+    <div>
+      <label for="maxPrice">Maximum Price:</label>
+      <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (input)="validateAndAdjustPrices()" min="0" />
+    </div>
+
+    <div>
+      <label for="category" class="form-label">Category:</label>
+      <select id="category" class="form-select"
+              [(ngModel)]="categoryName"
+              (change)="applyFilters()">
+        <option value="">Select a category...</option>
+        <option *ngFor="let category of categories" [value]="category.nom">
+          {{ category.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <button class="button-reset"  (click)="resetFilters()">Reset Filters</button>
+    </div>
   </div>
 
-  <div>
-    <label for="maxPrice">Maximum Price:</label>
-    <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (input)="validateAndAdjustPrices()" min="0" />
-  </div>
-
-  <div>
-    <label for="category" class="form-label">Category:</label>
-    <select id="category" class="form-select"
-            [(ngModel)]="categoryName"
-            (change)="applyFilters()">
-      <option value="">Select a category...</option>
-      <option *ngFor="let category of categories" [value]="category.nom">
-        {{ category.nom }}
-      </option>
-    </select>
-  </div>
-
-  <div>
-    <button class="button-reset"  (click)="resetFilters()">Reset Filters</button>
+<div class="container">
+  <div class="row">
+      <div class="col-md-3 col-sm-6" *ngFor="let product of filteredProducts">
+          <div class="product-grid3">
+              <div class="product-image3">
+                  <a href="#">
+                      <img class="pic-1" src={{product.image}}>
+                      <img class="pic-2" src={{product.image}}>
+                  </a>
+                  <ul class="social">
+                    <li>
+                        <a (click)="openShoppingDialog(product)"><i class="fa fa-search"></i></a>
+                    </li>
+                    <li>
+                        <a *ngIf="product.quantity > 0" (click)="buyProduct($event,product)" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                    <li>
+                        <a *ngIf="product.quantity <= 0" [class.disabled-link]="true" (click)="buyProduct($event, product)" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+<!--                    <li *ngIf="isAdmin">-->
+<!--                      <a href=""><i class="fa fa fa-pencil"></i></a>-->
+<!--                    </li>-->
+                  </ul>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#">{{product.title}}</a></h3>
+                  <div class="price">
+                    {{product.price}}
+                  </div>
+                  <ul class="rating">
+                    <li *ngFor="let star of product.stars" class="fa fa-star" [ngClass]="{ 'disable': !star }"></li>
+                </ul>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
-
 <hr>
-
-<div *ngIf="filteredProducts.length > 0; else noProducts" class="product-list">
-  <div *ngFor="let product of filteredProducts" class="product-card">
-    <img *ngIf="product.image" [src]="product.image" alt="{{ product.title }}" class="product-image" />
-    <div>
-      <strong>Title:</strong> {{ product.title }}
-    </div>
-    <div>
-      <strong>Price:</strong> {{ product.price | currency:'TND' }}
-    </div>
-    <div *ngIf="product.quantity > 0" class="strong1">
-      <strong>Availability:</strong>AVAILABLE
-    </div>
-    <div *ngIf="product.quantity <= 0" class="strong2">
-      <strong>Availability:</strong>OUT OF STOCK
-    </div>
-    <div>
-      <strong>Description:</strong> {{ product.description }}
-    </div>
-    <button class="buy-button" (click)="buyProduct(product)" [disabled]="product.quantity === 0">Buy</button>
-  </div>
-</div>
-
-<ng-template #noProducts>
-  <p>No products found.</p>
-</ng-template>
 
 <!-- Popup Notification -->
 <div class="popup-notification" #popupNotification>
-  Product added to cart!
-</div>
+    Product added to cart!
+  </div>
 
-<!-- Out of Stock Notification -->
-<div class="popup-notification out-of-stock-notification" #outOfStockNotification>
-  Product no longer in stock!
-</div>
+  <!-- Out of Stock Notification -->
+  <div class="popup-notification out-of-stock-notification" #outOfStockNotification>
+    Product no longer in stock!
+  </div>
