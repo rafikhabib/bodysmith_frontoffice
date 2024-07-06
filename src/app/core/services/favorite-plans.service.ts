@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +9,9 @@ import { Observable } from 'rxjs';
 export class FavoritesService {
   private apiUrl = 'http://localhost:9090/favorites'; // Adjust the URL as needed
 
-  constructor(private http: HttpClient) {}
-
-  addFavorite(
-    userId: string,
-    plats: string[],
-    totalCalories: number
-  ): Observable<any> {
+  constructor(private http: HttpClient, private auth: AuthService) {}
+  addFavorite(plats: string[], totalCalories: number): Observable<any> {
+    const userId = this.auth.currentUserValue._id;
     const platsString = JSON.stringify(plats); // Stringify the plats array
     return this.http.post(this.apiUrl, {
       userId,
