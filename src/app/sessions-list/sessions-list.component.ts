@@ -106,6 +106,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SessionsService } from 'src/app/core/services/sessions.service';
+import { CoachesService } from '../core/services/coaches.service';
+import { ReservationsService } from '../core/services/reservations.service';
+
 
 @Component({
   selector: 'app-sessions-list',
@@ -113,12 +116,21 @@ import { SessionsService } from 'src/app/core/services/sessions.service';
   styleUrls: ['./sessions-list.component.css']
 })
 export class SessionsListComponent implements OnInit {
+  reservationData ={} ; 
   sessions: any[] = [];
+  coaches : any[] = [] ; 
   filteredSessions: any[] = [];
   errorMessage: string | null = null;
   schedule: { [time: string]: any[] } = {};
+  private coachNameCache: { [key: string]: string } = {};
 
-  constructor(private sessionsService: SessionsService, private datePipe: DatePipe) { }
+
+  constructor(
+    private sessionsService: SessionsService, 
+    private datePipe: DatePipe, 
+    private coachesService :CoachesService,
+    private reservationsService : ReservationsService
+  ) { }
 
   ngOnInit() {
     this.getSessions();
@@ -138,6 +150,67 @@ export class SessionsListComponent implements OnInit {
     });
   }
 
+
+  reserver(session: any): void {
+
+    if (!session || !session._id || !session.coach) {
+      console.error('Invalid session data:', session);
+      return;
+    }
+
+    const reservationData = {
+      UserId: session.coach, // Utilisation de l'ID du coach pour l'utilisateur
+      seanceId: session._id // Utilisation de l'ID de la séance
+    };
+    this.reservationData=reservationData; 
+
+    this.reservationsService.createReservation(reservationData).subscribe(
+      (response) => {
+        console.log('Réservation réussie:', response);
+        alert('Réservation réussie!');
+        // Mettre à jour l'état de la session pour refléter la réservation si nécessaire
+      },
+      error => {
+        console.error('Error reserving session:', error);
+    
+        alert('Erreur lors de la réservation.');
+      }
+    );
+  }
+
+
+  getCoachNameById(id : string ){
+    this.sessionsService.getSessionById(id).subscribe(
+      name =>{
+
+        console.log(name);
+      }
+    );
+  }
+    
+  populateCoachNames(sessions: any[]) {
+    sessions.forEach(session => {
+      const coachId = session.coach;
+      if (coachId && !this.coachNameCache[coachId]) {
+        this.coachesService.getCoachName(coachId).subscribe(
+          name => {
+            this.coachNameCache[coachId] = name;
+            session.coachName = name;
+          },
+          error => console.error('Error fetching coach name', error)
+        );
+      } else if (coachId) {
+        session.coachName = this.coachNameCache[coachId];
+      }
+    });
+  }
+
+
+  // getCoachName(coachId: string): string {
+  //   return this.coachNameCache[coachId] || 'Loading...';
+  // }
+
+ 
   onWeekChange(event: any): void {
     const week = event.target.value; // Format: 'YYYY-Wxx'
     if (week) {
@@ -187,7 +260,9 @@ export class SessionsListComponent implements OnInit {
   getSessionForTimeAndDay(time: string, day: string): any {
     return this.schedule[time].find(session => {
       const sessionDate = new Date(session.DateEvent);
-      return sessionDate.toLocaleDateString('en-US', { weekday: 'long' }) === day;
+    if(sessionDate.toLocaleDateString('en-US', { weekday: 'long' }) === day){
+      return session ; 
+    }
     });
-  }
+  }   
 }

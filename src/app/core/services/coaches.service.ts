@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, throwError} from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,20 @@ export class CoachesService {
 
   createCoach(coach: any): Observable<any> {
     return this.http.post<any>(this.baseUrl, coach);
+  }
+  
+  getCoachName(id: string): Observable<string> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      return throwError('No auth token found'); // Utiliser throwError pour retourner une erreur observable
+    }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.get<any>(`${this.baseUrl}${id}`, { headers }).pipe(
+      map(response => response.firstName + ' ' + response.lastName) // Combine le prénom et le nom
+    );
   }
 }

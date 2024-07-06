@@ -1,113 +1,108 @@
-/* body {
-    background-color: #1a1a1a; 
-    color: white;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-p {
-    color: #ff4500;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ff4500; 
-    background-color: #262626; 
-}
-
-.form-group {
-    margin-bottom: 20px; 
-}
-
-label {
-    display: block;
-    margin-bottom: 8px; 
-    color: #ff4500; 
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px; 
-    border: 1px solid #ff4500; 
-    border-radius: 4px;
-    background-color: #1a1a1a; 
-    color: white; 
-   
-}
-
-.form-control option {
-    background-color: #1a1a1a; 
-    color: white; 
-}
-
-.form-control option:hover {
-    background-color: #333; 
-    color: #ff4500; 
-}
-
-.error-message {
-    margin-top: 8px; 
-    color: #ff4500; 
-    font-size: 14px;
-}
-
-.submit-button {
-    display: inline-block;
-    width: 100%; 
-    padding: 12px; 
-    border: none;
-    border-radius: 4px;
-    background-color: #ff4500; 
-    color: white; 
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-.submit-button:hover {
-    background-color: #ff6347; 
-}
-
-.submit-button:disabled {
-    background-color: gray; 
-    cursor: not-allowed;
-} */
-.form-group {
-    margin-bottom: 20px;
+/* Style pour l'arrière-plan de la page */
+body {
+    background-color: black; /* Fond noir */
+    color: white; /* Texte en blanc */
+    font-family: "Muli", sans-serif;
   }
   
-  .form-control {
-    list-style: none;
+  /* Style pour le conteneur principal */
+  #main-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  /* Style pour la liste des séances */
+  .form-group ul {
+    list-style-type: none;
     padding: 0;
   }
   
-  .form-control li {
+  .form-group li {
+    padding: 10px;
+    border: 1px solid white; /* Bordures blanches */
     margin-bottom: 10px;
+    background-color: #ff6f00; /* Fond orange pour un meilleur contraste */
+    border-radius: 5px; /* Bords arrondis */
+    display: flex;
+    align-items: center;
+    color: black; /* Couleur du texte en noir */
   }
   
-  .error-message {
-    color: #ff6f00;
-    font-size: 0.9rem;
-    margin-top: 5px;
-  }
-  
-  .submit-button {
-    background-color: #ff6f00;
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
+  .form-group li label {
     cursor: pointer;
+    margin-left: 10px;
+    font-size: 1em; /* Taille de la police */
+    color: black; /* Texte en noir */
+  }
+  
+  .form-group li input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2); /* Agrandir les boutons radio */
+  }
+  
+  /* Ajouter un effet de survol */
+  .form-group li:hover {
+    background-color: white; /* Fond blanc au survol */
+    color: black; /* Couleur du texte en noir */
+  }
+  
+  /* Style pour le bouton de soumission */
+  .submit-button {
+    background-color: #ff6f00; /* Fond orange */
+    color: white; /* Texte en blanc */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1em; /* Taille de la police */
+    transition: background-color 0.3s ease; /* Transition douce pour l'effet de survol */
+  }
+  
+  /* Effet de survol pour le bouton */
+  .submit-button:hover {
+    background-color: white; /* Fond blanc au survol */
+    color: black; /* Texte en noir */
   }
   
   .submit-button[disabled] {
-    background-color: #ccc;
+    background-color: grey;
     cursor: not-allowed;
+  }
+  
+  /* Style pour le conteneur des coachs */
+  .coach-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .coach-list li {
+    padding: 10px;
+    border: 1px solid white; /* Bordures blanches */
+    margin-bottom: 10px;
+    background-color: #ff6f00; /* Fond orange */
+    border-radius: 5px; /* Bords arrondis */
+    display: flex;
+    align-items: center;
+    color: black; /* Couleur du texte en noir */
+  }
+  
+  .coach-list li label {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1em; /* Taille de la police */
+    color: black; /* Texte en noir */
+  }
+  
+  .coach-list li input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2); /* Agrandir les boutons radio */
+  }
+  
+  /* Ajouter un effet de survol */
+  .coach-list li:hover {
+    background-color: white; /* Fond blanc au survol */
+    color: black; /* Couleur du texte en noir */
   }
   
