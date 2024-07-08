@@ -32,3 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Screenshots
 
 ![restaurant management](https://github.com/rafikhabib/bodysmith_frontoffice/assets/52664757/a52f450b-8458-47f8-a2a3-0a0cd09135a3)
+
+![Plat management](https://github.com/rafikhabib/bodysmith_frontoffice/assets/52664757/7100ce30-4bfe-4cb0-8162-029af6ff9eef)
+
+![Category Restaurant management](https://github.com/rafikhabib/bodysmith_frontoffice/assets/52664757/42df0f07-a7a1-45a3-baa9-b7b4976f5a2e)
